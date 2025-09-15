@@ -35,7 +35,8 @@ dependencies:
   path_provider: ^2.0.14
   provider: ^6.0.5   # For state management
   audioplayers: ^5.2.0
-  shared_preferences: ^2.1.0
+  shared_preferences: ^2.1.1
+  flutter_animate: ^4.1.0
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -63,6 +64,7 @@ flutter:
     - assets/audio/medium/
     - assets/audio/hard/
     - assets/data/words.json
+    - assets/data/questions.json
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

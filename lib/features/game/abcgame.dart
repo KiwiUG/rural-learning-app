@@ -1,139 +1,159 @@
-// lib/main.dart
 import 'dart:async';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(GuessTheABCsApp());
-}
+/// Question model
+class Question {
+  final String letter;
+  final String clue;
+  final String answer;
 
-class GuessTheABCsApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Guess the ABC\'s',
-      theme: ThemeData(
-        primarySwatch: Colors.indigo,
-      ),
-      home: HomeScreen(),
-      debugShowCheckedModeBanner: false,
+  Question({required this.letter, required this.clue, required this.answer});
+
+  factory Question.fromJson(Map<String, dynamic> json) {
+    return Question(
+      letter: json['letter'],
+      clue: json['clue'],
+      answer: json['answer'],
     );
   }
 }
 
-/// Simple Question model
-class Question {
-  final String letter; // "A", "B", ...
-  final String clue;
-  final String answer; // canonical answer for checking
+/// Load questions from JSON
+Future<Map<String, List<Question>>> loadQuestions() async {
+  final jsonString = await rootBundle.loadString('assets/data/questions.json');
+  final Map<String, dynamic> jsonMap = json.decode(jsonString);
 
-  Question({required this.letter, required this.clue, required this.answer});
+  Map<String, List<Question>> questionsByTheme = {};
+  jsonMap.forEach((theme, questionsList) {
+    questionsByTheme[theme] = (questionsList as List)
+        .map((q) => Question.fromJson(q))
+        .toList();
+  });
+  return questionsByTheme;
 }
 
-/// Some sample questions. In production, move to JSON assets (one file per theme).
-/// Only a few letters are filled for demo. Letters without questions will be skipped.
-final Map<String, List<Question>> sampleQuestionsByTheme = {
-  'Physics': [
-    Question(letter: 'A', clue: 'The rate of change of velocity', answer: 'acceleration'),
-    Question(letter: 'B', clue: 'The bending of light passing through a prism', answer: 'dispersion'), // B fallback example
-    Question(letter: 'C', clue: 'Amount of matter in an object', answer: 'mass'), // intentionally letter mismatch possible
-    Question(letter: 'F', clue: 'A force that opposes motion through air', answer: 'air resistance'),
-    Question(letter: 'G', clue: 'Acceleration due to gravity on Earth (symbol)', answer: 'g'),
-  ],
-  'Math': [
-    Question(letter: 'A', clue: 'A polygon with three sides', answer: 'triangle'),
-    Question(letter: 'B', clue: 'Answer you get from multiplying numbers', answer: 'product'),
-    Question(letter: 'C', clue: 'The value representing center of data (sum/n)', answer: 'mean'),
-    Question(letter: 'P', clue: 'Ratio of circumference to diameter', answer: 'pi'),
-  ],
-  'Chemistry': [
-    Question(letter: 'A', clue: 'Atomic number represents number of ?', answer: 'protons'),
-    Question(letter: 'B', clue: 'pH value < 7 indicates', answer: 'acidic'),
-    Question(letter: 'C', clue: 'Covalent bond shares ___ between atoms', answer: 'electrons'),
-  ],
-};
-
-/// Utilities
-String normalize(String s) => s.trim().toLowerCase();
-
-class HomeScreen extends StatefulWidget {
+/// Main App
+class GuessTheABCsApp extends StatelessWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: "Guess The ABC's",
+      debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        primaryColor: Colors.blue.shade700,
+        scaffoldBackgroundColor: Colors.grey.shade50,
+        elevatedButtonTheme: ElevatedButtonThemeData(
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            padding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+          ),
+        ),
+      ),
+      home: ABCGame(),
+    );
+  }
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  String _selectedTheme = 'Physics';
-  int _highScore = 0;
+/// ---------------- Home Screen ----------------
+class ABCGame extends StatefulWidget {
+  @override
+  _ABCGameState createState() => _ABCGameState();
+}
+
+class _ABCGameState extends State<ABCGame> {
+  Map<String, List<Question>> allQuestions = {};
+  String selectedTheme = 'Physics';
+  bool loading = true;
+  int highScore = 0;
 
   @override
   void initState() {
     super.initState();
-    _loadHighScore();
+    _loadData();
   }
 
-  Future<void> _loadHighScore() async {
+  Future<void> _loadData() async {
+    final questions = await loadQuestions();
     final prefs = await SharedPreferences.getInstance();
     setState(() {
-      _highScore = prefs.getInt('highscore') ?? 0;
+      allQuestions = questions;
+      loading = false;
+      highScore = prefs.getInt('highscore') ?? 0;
     });
   }
 
   void _startGame() {
-    Navigator.of(context).push(
+    if (!allQuestions.containsKey(selectedTheme)) return;
+    Navigator.push(
+      context,
       MaterialPageRoute(
-        builder: (_) => GameScreen(theme: _selectedTheme),
+        builder: (_) => GameScreen(questions: allQuestions[selectedTheme]!),
       ),
-    ).then((_) => _loadHighScore()); // refresh high score when returning
+    ).then((_) => _reloadHighScore());
+  }
+
+  Future<void> _reloadHighScore() async {
+    final prefs = await SharedPreferences.getInstance();
+    setState(() {
+      highScore = prefs.getInt('highscore') ?? 0;
+    });
   }
 
   @override
   Widget build(BuildContext context) {
-    final themes = sampleQuestionsByTheme.keys.toList();
+    if (loading) return Scaffold(body: Center(child: CircularProgressIndicator()));
+
+    final themes = allQuestions.keys.toList();
+
     return Scaffold(
-      appBar: AppBar(title: Text('Guess the ABC\'s')),
+      appBar: AppBar(title: Text("Guess the ABC's")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
-          children: <Widget>[
-            SizedBox(height: 18),
+          children: [
+            SizedBox(height: 20),
             Text(
-              'STEM Trivia — Alphabet Game',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              "STEM Alphabet Trivia",
+              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.blueGrey.shade900),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 18),
+            SizedBox(height: 12),
             Text(
-              'Select a theme. Each letter (A → Z) will present a clue. Type the correct answer within the time limit.',
+              "Select a theme and answer 30 questions. Type the answer before time runs out!",
+              style: TextStyle(fontSize: 16, color: Colors.blueGrey.shade700),
               textAlign: TextAlign.center,
             ),
-            SizedBox(height: 18),
+            SizedBox(height: 20),
             DropdownButtonFormField<String>(
-              value: _selectedTheme,
+              value: selectedTheme,
               items: themes.map((t) => DropdownMenuItem(value: t, child: Text(t))).toList(),
-              onChanged: (v) => setState(() => _selectedTheme = v ?? themes.first),
-              decoration: InputDecoration(border: OutlineInputBorder(), labelText: 'Theme'),
-            ),
-            SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: _startGame,
-              icon: Icon(Icons.play_arrow),
-              label: Padding(
-                padding: const EdgeInsets.symmetric(vertical: 12.0, horizontal: 8),
-                child: Text('Start Game', style: TextStyle(fontSize: 18)),
+              onChanged: (v) => setState(() => selectedTheme = v ?? themes.first),
+              decoration: InputDecoration(
+                filled: true,
+                fillColor: Colors.white,
+                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                labelText: 'Theme',
               ),
-              style: ElevatedButton.styleFrom(minimumSize: Size.fromHeight(50)),
             ),
-            Spacer(),
+            SizedBox(height: 20),
+            ElevatedButton.icon(
+              icon: Icon(Icons.play_arrow),
+              label: Text("Start Game", style: TextStyle(fontSize: 18)),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade700),
+              onPressed: _startGame,
+            ),
+            SizedBox(height: 30),
             Card(
               elevation: 2,
               child: ListTile(
-                leading: Icon(Icons.star),
-                title: Text('Local High Score'),
-                trailing: Text('$_highScore'),
+                leading: Icon(Icons.star, color: Colors.amber),
+                title: Text("High Score"),
+                trailing: Text("$highScore"),
               ),
             ),
-            SizedBox(height: 8),
-            Text('Tip: add more questions in sampleQuestionsByTheme or load from JSON assets.'),
           ],
         ),
       ),
@@ -141,382 +161,231 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
+/// ---------------- Game Screen ----------------
 class GameScreen extends StatefulWidget {
-  final String theme;
-
-  GameScreen({required this.theme});
-
+  final List<Question> questions;
+  GameScreen({required this.questions});
   @override
   _GameScreenState createState() => _GameScreenState();
 }
 
-class _GameScreenState extends State<GameScreen> {
-  // Game state
-  final List<String> letters = List.generate(26, (i) => String.fromCharCode(65 + i)); // A..Z
-  late Map<String, Question> questionsByLetter; // quick lookup for current theme
-  int index = 0; // index into letters
-  int lives = 3;
-  int score = 0;
-  int streak = 0;
-  int xp = 0;
-  List<String> earnedBadges = [];
-
-  // Timer
-  static const int perQuestionSeconds = 20;
-  int remainingSeconds = perQuestionSeconds;
-  Timer? timer;
-
-  // input
+class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateMixin {
+  int index = 0, lives = 3, score = 0, streak = 0, xp = 0;
+  List<String> badges = [];
   final TextEditingController _controller = TextEditingController();
   bool submitted = false;
   String feedbackText = '';
+  int remainingSeconds = 20;
+  Timer? timer;
+
+  // Animation
+  late AnimationController _animController;
+  late Animation<double> _scaleAnim;
+  late Animation<double> _shakeAnim;
+  Color feedbackColor = Colors.transparent;
 
   @override
   void initState() {
     super.initState();
-    _prepareQuestions();
-    _startNextAvailable(); // start at first letter that has a question
+    _startTimer();
+
+    _animController = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
+    _scaleAnim = Tween<double>(begin: 1, end: 1.1).animate(_animController);
+    _shakeAnim = Tween<double>(begin: 0, end: 8).animate(_animController);
   }
 
-  void _prepareQuestions() {
-    final list = sampleQuestionsByTheme[widget.theme] ?? [];
-    questionsByLetter = { for (var q in list) q.letter.toUpperCase(): q };
-  }
+  Question get currentQuestion => widget.questions[index];
 
   void _startTimer() {
     timer?.cancel();
-    setState(() {
-      remainingSeconds = perQuestionSeconds;
-    });
+    remainingSeconds = 20;
     timer = Timer.periodic(Duration(seconds: 1), (t) {
       if (remainingSeconds <= 1) {
         t.cancel();
-        _onTimeUp();
-      } else {
-        setState(() {
-          remainingSeconds -= 1;
-        });
-      }
+        _applyAnswer(isCorrect: false, auto: true);
+      } else setState(() => remainingSeconds--);
     });
   }
 
-  void _onTimeUp() {
-    // treat as wrong answer
+  void _applyAnswer({bool isCorrect = false, bool auto = false}) {
+    timer?.cancel();
     setState(() {
       submitted = true;
-      feedbackText = 'Time up!';
-      streak = 0;
-      lives -= 1;
-    });
-    Future.delayed(Duration(seconds: 1), _nextLetter);
-  }
-
-  Question? get currentQuestion {
-    final letter = letters[index];
-    return questionsByLetter[letter];
-  }
-
-  void _submitAnswer() {
-    if (submitted) return;
-    final q = currentQuestion;
-    if (q == null) return;
-    final attempt = normalize(_controller.text);
-    final correct = normalize(q.answer);
-    setState(() {
-      submitted = true;
-      timer?.cancel();
-      if (attempt.isNotEmpty && attempt == correct) {
-        // correct
-        final pts = 10 + remainingSeconds; // base + speed bonus
+      if (isCorrect) {
+        int pts = 10 + remainingSeconds;
         score += pts;
-        xp += (5 + (remainingSeconds ~/ 2));
+        xp += 5 + remainingSeconds ~/ 2;
         streak += 1;
-        feedbackText = 'Correct! +$pts';
-        if (streak > 0 && streak % 5 == 0) {
-          earnedBadges.add('Streak x$streak');
-        }
+        feedbackText = '+$pts Points!';
+        feedbackColor = Colors.green.shade400;
+        _animController.forward().then((_) => _animController.reverse());
+
+        if (streak % 5 == 0) badges.add('Streak x$streak');
       } else {
-        // wrong
-        feedbackText = 'Wrong. Answer: ${q.answer}';
+        feedbackText = auto
+            ? 'Time Up! Answer: ${currentQuestion.answer}'
+            : 'Wrong! Answer: ${currentQuestion.answer}';
         streak = 0;
-        lives -= 1;
+        lives--;
+        feedbackColor = Colors.red.shade300;
+        _animController.forward().then((_) => _animController.reverse());
       }
     });
 
-    Future.delayed(Duration(milliseconds: 900), _nextLetter);
+    Future.delayed(Duration(seconds: 1), _nextQuestion);
   }
 
-  void _nextLetter() {
+  void _submit() {
+    if (submitted) return;
+    final ans = _controller.text.trim().toLowerCase();
+    final correct = currentQuestion.answer.trim().toLowerCase();
+    _applyAnswer(isCorrect: ans == correct);
+  }
+
+  void _nextQuestion() {
     _controller.clear();
     setState(() {
       submitted = false;
       feedbackText = '';
+      feedbackColor = Colors.transparent;
+      if (lives <= 0 || index >= widget.questions.length - 1) {
+        _endGame();
+      } else {
+        index++;
+        _startTimer();
+      }
     });
-
-    if (lives <= 0) {
-      _endGame();
-      return;
-    }
-
-    // Advance index to next letter that has a question; if none left, end
-    int next = index + 1;
-    while (next < letters.length && !questionsByLetter.containsKey(letters[next])) {
-      next++;
-    }
-    if (next >= letters.length) {
-      _endGame();
-    } else {
-      setState(() {
-        index = next;
-      });
-      _startTimer();
-    }
-  }
-
-  void _startNextAvailable() {
-    // find first letter that has a question
-    int first = 0;
-    while (first < letters.length && !questionsByLetter.containsKey(letters[first])) {
-      first++;
-    }
-    if (first >= letters.length) {
-      // no questions for this theme
-      showDialog(
-        context: context,
-        builder: (_) => AlertDialog(
-          title: Text('No questions'),
-          content: Text('No questions are available for theme "${widget.theme}".'),
-          actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text('OK'))],
-        ),
-      ).then((_) => Navigator.pop(context));
-      return;
-    }
-    setState(() {
-      index = first;
-      lives = 3;
-      score = 0;
-      streak = 0;
-      xp = 0;
-      earnedBadges = [];
-    });
-    _startTimer();
   }
 
   Future<void> _endGame() async {
     timer?.cancel();
-    // award basic badges
-    if (score > 0 && !earnedBadges.contains('Played')) earnedBadges.add('Played');
-    if (streak >= 10) earnedBadges.add('Legendary Streak');
-
     final prefs = await SharedPreferences.getInstance();
     final high = prefs.getInt('highscore') ?? 0;
-    if (score > high) {
-      await prefs.setInt('highscore', score);
-    }
+    if (score > high) await prefs.setInt('highscore', score);
 
-    Navigator.of(context).pushReplacement(
-      MaterialPageRoute(
-        builder: (_) => ResultScreen(
-          score: score,
-          xp: xp,
-          badges: earnedBadges,
-          theme: widget.theme,
-        ),
-      ),
-    );
+    Navigator.of(context).pushReplacement(MaterialPageRoute(
+        builder: (_) => ResultScreen(score: score, xp: xp, badges: badges)));
   }
 
   @override
   void dispose() {
     timer?.cancel();
     _controller.dispose();
+    _animController.dispose();
     super.dispose();
-  }
-
-  Widget _buildHeadsUp() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text('Lives: $lives', style: TextStyle(fontSize: 16)),
-        Text('Score: $score', style: TextStyle(fontSize: 16)),
-        Text('Streak: $streak', style: TextStyle(fontSize: 16)),
-      ],
-    );
   }
 
   @override
   Widget build(BuildContext context) {
-    final q = currentQuestion;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Theme: ${widget.theme}'),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () {
-            timer?.cancel();
-            Navigator.of(context).pop();
-          },
-        ),
-      ),
-      body: q == null
-          ? Center(child: Text('No question for ${letters[index]}.'))
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+      appBar: AppBar(title: Text('Question ${index + 1}/${widget.questions.length}')),
+      body: AnimatedContainer(
+        duration: Duration(milliseconds: 300),
+        color: feedbackColor.withOpacity(0.3),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _buildHeadsUp(),
-                  SizedBox(height: 12),
-                  Card(
-                    elevation: 3,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 24.0, horizontal: 16),
-                      child: Column(
-                        children: [
-                          Text(
-                            letters[index],
-                            style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
-                          ),
-                          SizedBox(height: 12),
-                          Text(q.clue, textAlign: TextAlign.center, style: TextStyle(fontSize: 18)),
-                        ],
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  LinearProgressIndicator(
-                    value: remainingSeconds / perQuestionSeconds,
-                    minHeight: 8,
-                  ),
-                  SizedBox(height: 8),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text('Time left: $remainingSeconds s'),
-                      Text('Letter ${index + 1}/${letters.length}'),
-                    ],
-                  ),
-                  SizedBox(height: 12),
-                  TextField(
-                    controller: _controller,
-                    enabled: !submitted,
-                    onSubmitted: (_) => _submitAnswer(),
-                    decoration: InputDecoration(
-                      labelText: 'Your answer',
-                      border: OutlineInputBorder(),
-                      suffixIcon: IconButton(
-                        icon: Icon(Icons.send),
-                        onPressed: _submitAnswer,
-                      ),
-                    ),
-                  ),
-                  SizedBox(height: 12),
-                  if (feedbackText.isNotEmpty)
-                    Text(
-                      feedbackText,
-                      style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-                    ),
-                  SizedBox(height: 12),
-                  Expanded(child: SizedBox()),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          // skip to next letter (penalty)
-                          timer?.cancel();
-                          setState(() {
-                            lives -= 1;
-                          });
-                          _nextLetter();
-                        },
-                        icon: Icon(Icons.skip_next),
-                        label: Text('Skip (-1 life)'),
-                        style: ElevatedButton.styleFrom(primary: Colors.orange),
-                      ),
-                      ElevatedButton.icon(
-                        onPressed: () {
-                          timer?.cancel();
-                          _endGame();
-                        },
-                        icon: Icon(Icons.stop),
-                        label: Text('End Game'),
-                        style: ElevatedButton.styleFrom(primary: Colors.red),
-                      ),
-                    ],
-                  ),
+                  Text('Lives: $lives ❤️', style: TextStyle(color: Colors.blueGrey.shade800)),
+                  Text('Score: $score', style: TextStyle(color: Colors.blueGrey.shade800)),
+                  Text('Streak: $streak', style: TextStyle(color: Colors.blueGrey.shade800)),
                 ],
               ),
-            ),
+              SizedBox(height: 16),
+              ScaleTransition(
+                scale: _scaleAnim,
+                child: Card(
+                  elevation: 4,
+                  child: Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Column(
+                      children: [
+                        Text(currentQuestion.letter,
+                            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
+                        SizedBox(height: 12),
+                        Text(currentQuestion.clue,
+                            style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 12),
+              LinearProgressIndicator(
+                value: remainingSeconds / 20,
+                minHeight: 8,
+                backgroundColor: Colors.grey.shade300,
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue.shade400),
+              ),
+              SizedBox(height: 16),
+              TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                  hintText: 'Type your answer here',
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                ),
+                onSubmitted: (_) => _submit(),
+              ),
+              SizedBox(height: 12),
+              ElevatedButton(
+                  onPressed: _submit,
+                  child: Text('Submit Answer'),
+                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade700)),
+              SizedBox(height: 20),
+              Text(feedbackText,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey.shade900)),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
 
+/// ---------------- Result Screen ----------------
 class ResultScreen extends StatelessWidget {
   final int score;
   final int xp;
   final List<String> badges;
-  final String theme;
 
-  ResultScreen({required this.score, required this.xp, required this.badges, required this.theme});
+  ResultScreen({required this.score, required this.xp, required this.badges});
 
   @override
   Widget build(BuildContext context) {
-    String badgeText = badges.isEmpty ? 'No badges earned' : badges.join(', ');
     return Scaffold(
-      appBar: AppBar(title: Text('Results')),
-      body: Padding(
-        padding: const EdgeInsets.all(18.0),
+      appBar: AppBar(title: Text("Game Over")),
+      body: Container(
+        width: double.infinity,
+        padding: EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [Colors.grey.shade100, Colors.blue.shade100]),
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
-              'Finished — Theme: $theme',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 18),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.score),
-                title: Text('Score'),
-                trailing: Text('$score'),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.flash_on),
-                title: Text('XP Earned'),
-                trailing: Text('$xp'),
-              ),
-            ),
-            Card(
-              child: ListTile(
-                leading: Icon(Icons.emoji_events),
-                title: Text('Badges'),
-                subtitle: Text(badgeText),
-              ),
-            ),
-            SizedBox(height: 24),
-            ElevatedButton.icon(
-              icon: Icon(Icons.replay),
-              onPressed: () {
-                Navigator.of(context).pushReplacement(
-                  MaterialPageRoute(builder: (_) => GameScreen(theme: theme)),
-                );
-              },
-              label: Text('Play Again'),
-            ),
+            Text('Score: $score', style: TextStyle(fontSize: 32, color: Colors.blueGrey.shade900)),
             SizedBox(height: 12),
-            ElevatedButton.icon(
-              icon: Icon(Icons.home),
-              onPressed: () {
-                Navigator.of(context).pushAndRemoveUntil(
-                  MaterialPageRoute(builder: (_) => HomeScreen()),
-                  (route) => false,
-                );
-              },
-              label: Text('Back to Home'),
-              style: ElevatedButton.styleFrom(primary: Colors.grey[700]),
+            Text('XP Earned: $xp', style: TextStyle(fontSize: 24, color: Colors.blueGrey.shade700)),
+            SizedBox(height: 20),
+            Text('Badges:', style: TextStyle(fontSize: 20, color: Colors.blueGrey.shade900)),
+            SizedBox(height: 10),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: badges
+                  .map((b) => Chip(label: Text(b), backgroundColor: Colors.amber.shade400))
+                  .toList(),
             ),
+            SizedBox(height: 40),
+            ElevatedButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text('Play Again'),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade700)),
           ],
         ),
       ),
