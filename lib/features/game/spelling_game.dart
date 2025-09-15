@@ -4,6 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:rural_learning_app/data/player_profile.dart';
+
+
 class SpellingGameScreen extends StatefulWidget {
   const SpellingGameScreen({super.key});
 
@@ -22,14 +27,30 @@ class _SpellingGameScreenState extends State<SpellingGameScreen> {
   String hint = "";
   Color? overlayColor; // null means no overlay
 
-
+  late PlayerProfile profile;
 
   @override
   void initState() {
     super.initState();
     loadWords();
+    loadProfile();
   }
 
+  Future<void> loadProfile() async {
+    final box = Hive.box('playerBox');
+    final saved = box.get('profile');
+    if (saved != null) {
+      profile = PlayerProfile.fromJson(Map<String, dynamic>.from(saved));
+    } else {
+      profile = PlayerProfile();
+      saveProfile();
+    }
+    setState(() {}); // refresh UI when profile is loaded
+  }
+
+  void saveProfile() {
+    Hive.box('playerBox').put('profile', profile.toJson());
+  }
   Future<void> loadWords() async {
     try {
       final jsonString = await rootBundle.loadString('assets/data/words.json');
@@ -65,50 +86,46 @@ class _SpellingGameScreenState extends State<SpellingGameScreen> {
     _player.play(AssetSource("audio/$selectedLevel/$audioFile"));
   }
 
- void checkAnswer() {
+void checkAnswer() {
   if (words.isEmpty) return;
   String userAnswer = _controller.text.trim().toLowerCase();
   String correctAnswer = words[currentIndex]['word'].toLowerCase();
 
   if (userAnswer == correctAnswer) {
+    int xpEarned = selectedLevel == "easy"
+        ? 10
+        : selectedLevel == "medium"
+            ? 20
+            : 30;
+
     setState(() {
-      feedback = "✅ Correct!";
-      hint = "";
-      overlayColor = Colors.green.withOpacity(0.6); // ✅ Green overlay
+      profile.addXP(xpEarned);  // ✅ Give XP
+      saveProfile();            // ✅ Persist profile
+      feedback = "✅ +$xpEarned XP!";
+      hint="";
+      overlayColor = const Color(0xFF00FF7F);
     });
 
-    // Hide overlay after short delay and go to next word
     Future.delayed(const Duration(milliseconds: 700), () {
-      if (mounted) {
-        setState(() {
-          overlayColor = null;
-          pickRandomWord();
-        });
-      }
+      if (mounted) setState(() {
+        overlayColor = null;
+        pickRandomWord();
+      });
     });
 
   } else {
     setState(() {
       feedback = "❌ Try Again!";
-      overlayColor = Colors.red.withOpacity(0.6); // ❌ Red overlay
+      overlayColor = const Color(0xFFFF1744);
     });
 
-    // Hide overlay after short delay
     Future.delayed(const Duration(milliseconds: 700), () {
-      if (mounted) {
-        setState(() => overlayColor = null);
-      }
+      if (mounted) setState(() => overlayColor = null);
     });
   }
-
   _controller.clear();
-
-  Future.delayed(const Duration(seconds: 2), () {
-    if (mounted) {
-      setState(() => feedback = "");
-    }
-  });
 }
+
 
 void showHint() {
   if (words.isEmpty) return;
