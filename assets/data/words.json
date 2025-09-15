@@ -1,0 +1,8 @@
+[
+  { "level": 1,"word": "apple", "audio": "apple.m4a" },
+  { "level": 1,"word": "banana", "audio": "banana.m4a" },
+
+  { "level": 2,"word": "a", "audio": "apple.m4a" },
+  { "level": 2,"word": "b", "audio": "banana.m4a" }
+
+]
