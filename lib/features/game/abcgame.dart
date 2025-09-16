@@ -7,18 +7,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 /// Question model
 class Question {
-  final String letter;
   final String clue;
   final String answer;
 
-  Question({required this.letter, required this.clue, required this.answer});
+  Question({required this.clue, required this.answer});
 
   factory Question.fromJson(Map<String, dynamic> json) {
-    return Question(
-      letter: json['letter'],
-      clue: json['clue'],
-      answer: json['answer'],
-    );
+    return Question(clue: json['clue'], answer: json['answer']);
   }
 }
 
@@ -41,16 +36,32 @@ class GuessTheABCsApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "Guess The ABC's",
+      title: "STEM Quiz",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: Colors.blue.shade700,
-        scaffoldBackgroundColor: Colors.grey.shade50,
+        brightness: Brightness.light,
+        scaffoldBackgroundColor: Colors.white,
+        cardColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          backgroundColor: Color(0xFF2C3E50),
+          foregroundColor: Colors.white,
+        ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(12),
+            ),
             padding: EdgeInsets.symmetric(vertical: 14, horizontal: 20),
+            backgroundColor: Color(0xFF2C3E50),
+            foregroundColor: Colors.white,
           ),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+          hintStyle: TextStyle(color: Colors.black45),
+          labelStyle: TextStyle(color: Colors.black87),
         ),
       ),
       home: ABCGame(),
@@ -69,6 +80,7 @@ class _ABCGameState extends State<ABCGame> {
   String selectedTheme = 'Physics';
   bool loading = true;
   int highScore = 0;
+  List<String> lastScores = [];
 
   @override
   void initState() {
@@ -83,6 +95,7 @@ class _ABCGameState extends State<ABCGame> {
       allQuestions = questions;
       loading = false;
       highScore = prefs.getInt('highscore') ?? 0;
+      lastScores = prefs.getStringList('lastScores') ?? [];
     });
   }
 
@@ -100,63 +113,146 @@ class _ABCGameState extends State<ABCGame> {
     final prefs = await SharedPreferences.getInstance();
     setState(() {
       highScore = prefs.getInt('highscore') ?? 0;
+      lastScores = prefs.getStringList('lastScores') ?? [];
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    if (loading) return Scaffold(body: Center(child: CircularProgressIndicator()));
+    if (loading)
+      return Scaffold(
+        body: Center(
+          child: CircularProgressIndicator(color: Color(0xFF2C3E50)),
+        ),
+      );
 
     final themes = allQuestions.keys.toList();
+    final List<String> rankEmojis = ['🥇', '🥈', '🥉', '🏅', '🎖️'];
 
     return Scaffold(
+
       backgroundColor: Colors.transparent,
-      appBar: AppBar(title: Text("Guess the ABC's")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            SizedBox(height: 20),
-            Text(
-              "STEM Alphabet Trivia",
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.blueGrey.shade900),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 12),
-            Text(
-              "Select a theme and answer 30 questions. Type the answer before time runs out!",
-              style: TextStyle(fontSize: 16, color: Colors.blueGrey.shade700),
-              textAlign: TextAlign.center,
-            ),
-            SizedBox(height: 20),
-            DropdownButtonFormField<String>(
-              value: selectedTheme,
-              items: themes.map((t) => DropdownMenuItem(value: t, child: Text(t))).toList(),
-              onChanged: (v) => setState(() => selectedTheme = v ?? themes.first),
-              decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-                labelText: 'Theme',
+      appBar: AppBar(title: Text("STEM Quiz")),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.white, Colors.grey[300]!],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            children: [
+              SizedBox(height: 20),
+              Text(
+                "STEM Quiz",
+                style: TextStyle(
+                  fontSize: 28,
+                  fontWeight: FontWeight.bold,
+                  color: Color(0xFF2C3E50),
+                ),
+                textAlign: TextAlign.center,
               ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton.icon(
-              icon: Icon(Icons.play_arrow),
-              label: Text("Start Game", style: TextStyle(fontSize: 18)),
-              style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade700),
-              onPressed: _startGame,
-            ),
-            SizedBox(height: 30),
-            Card(
-              elevation: 2,
-              child: ListTile(
-                leading: Icon(Icons.star, color: Colors.amber),
-                title: Text("High Score"),
-                trailing: Text("$highScore"),
+              SizedBox(height: 12),
+              Text(
+                "Select a theme and answer 30 questions. Type the answer before time runs out!",
+                style: TextStyle(fontSize: 16, color: Colors.black45),
+                textAlign: TextAlign.center,
               ),
-            ),
-          ],
+              SizedBox(height: 20),
+              DropdownButtonFormField<String>(
+                value: selectedTheme,
+                dropdownColor: Colors.white,
+                items: themes
+                    .map(
+                      (t) => DropdownMenuItem(
+                        value: t,
+                        child: Text(t, style: TextStyle(color: Colors.black87)),
+                      ),
+                    )
+                    .toList(),
+                onChanged: (v) =>
+                    setState(() => selectedTheme = v ?? themes.first),
+                decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.white,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  labelText: 'Theme',
+                  labelStyle: TextStyle(color: Colors.black87),
+                ),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton.icon(
+                icon: Icon(Icons.play_arrow, color: Colors.white),
+                label: Text(
+                  "Start Game",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Color(0xFF2C3E50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  minimumSize: Size.fromHeight(50),
+                  foregroundColor: Colors.white,
+                ),
+                onPressed: _startGame,
+              ),
+              SizedBox(height: 30),
+              Card(
+                elevation: 2,
+                color: Colors.white,
+                child: ListTile(
+                  leading: Icon(Icons.star, color: Color(0xFF2C3E50)),
+                  title: Text(
+                    "High Score",
+                    style: TextStyle(color: Colors.black87),
+                  ),
+                  trailing: Text(
+                    "$highScore",
+                    style: TextStyle(
+                      color: Color(0xFF2C3E50),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
+              Text(
+                'Last 5 Scores:',
+                style: TextStyle(fontSize: 18, color: Colors.black87),
+              ),
+              SizedBox(height: 8),
+              Column(
+                children: lastScores.asMap().entries.map((entry) {
+                  int idx = entry.key;
+                  String score = entry.value;
+                  String emoji = idx < rankEmojis.length
+                      ? rankEmojis[idx]
+                      : '🏅';
+                  return Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(emoji, style: TextStyle(fontSize: 22)),
+                      SizedBox(width: 8),
+                      Text(
+                        score,
+                        style: TextStyle(
+                          color: Color(0xFF2C3E50),
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  );
+                }).toList(),
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -171,7 +267,8 @@ class GameScreen extends StatefulWidget {
   _GameScreenState createState() => _GameScreenState();
 }
 
-class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateMixin {
+class _GameScreenState extends State<GameScreen>
+    with SingleTickerProviderStateMixin {
   int index = 0, lives = 3, score = 0, streak = 0, xp = 0;
   List<String> badges = [];
   final TextEditingController _controller = TextEditingController();
@@ -183,17 +280,28 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
   // Animation
   late AnimationController _animController;
   late Animation<double> _scaleAnim;
-  late Animation<double> _shakeAnim;
+  late Animation<double> _burstAnim;
   Color feedbackColor = Colors.transparent;
+  Color burstColor = Colors.transparent;
+  bool showBurst = false;
+  bool showHintLetter = false;
 
   @override
   void initState() {
     super.initState();
     _startTimer();
 
-    _animController = AnimationController(vsync: this, duration: Duration(milliseconds: 300));
-    _scaleAnim = Tween<double>(begin: 1, end: 1.1).animate(_animController);
-    _shakeAnim = Tween<double>(begin: 0, end: 8).animate(_animController);
+    _animController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 350),
+    );
+    _scaleAnim = Tween<double>(begin: 1, end: 1.15).animate(
+      CurvedAnimation(parent: _animController, curve: Curves.elasticOut),
+    );
+    _burstAnim = Tween<double>(
+      begin: 0,
+      end: 1,
+    ).animate(CurvedAnimation(parent: _animController, curve: Curves.easeOut));
   }
 
   Question get currentQuestion => widget.questions[index];
@@ -205,7 +313,8 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
       if (remainingSeconds <= 1) {
         t.cancel();
         _applyAnswer(isCorrect: false, auto: true);
-      } else setState(() => remainingSeconds--);
+      } else
+        setState(() => remainingSeconds--);
     });
   }
 
@@ -213,6 +322,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
     timer?.cancel();
     setState(() {
       submitted = true;
+      showBurst = true;
       if (isCorrect) {
         int pts = 10 + remainingSeconds;
         score += pts;
@@ -220,6 +330,7 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
         streak += 1;
         feedbackText = '+$pts Points!';
         feedbackColor = Colors.green.shade400;
+        burstColor = Colors.greenAccent.shade400;
         _animController.forward().then((_) => _animController.reverse());
 
         if (streak % 5 == 0) badges.add('Streak x$streak');
@@ -230,11 +341,18 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
         streak = 0;
         lives--;
         feedbackColor = Colors.red.shade300;
+        burstColor = Colors.redAccent.shade400;
         _animController.forward().then((_) => _animController.reverse());
       }
     });
 
-    Future.delayed(Duration(seconds: 1), _nextQuestion);
+    Future.delayed(Duration(milliseconds: 700), () {
+      setState(() {
+        showBurst = false;
+        burstColor = Colors.transparent;
+      });
+      Future.delayed(Duration(milliseconds: 300), _nextQuestion);
+    });
   }
 
   void _submit() {
@@ -250,6 +368,9 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
       submitted = false;
       feedbackText = '';
       feedbackColor = Colors.transparent;
+      burstColor = Colors.transparent;
+      showBurst = false;
+      showHintLetter = false;
       if (lives <= 0 || index >= widget.questions.length - 1) {
         _endGame();
       } else {
@@ -264,9 +385,20 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
     final prefs = await SharedPreferences.getInstance();
     final high = prefs.getInt('highscore') ?? 0;
     if (score > high) await prefs.setInt('highscore', score);
+
     ProfileService.addXP(xp);
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-        builder: (_) => ResultScreen(score: score, xp: xp, badges: badges)));
+    // Save last 5 scores
+    List<String> lastScores = prefs.getStringList('lastScores') ?? [];
+    lastScores.insert(0, score.toString());
+    if (lastScores.length > 5) lastScores = lastScores.sublist(0, 5);
+    await prefs.setStringList('lastScores', lastScores);
+
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (_) =>
+            ResultScreen(score: score, xp: xp, lastScores: lastScores),
+      ),
+    );
   }
 
   @override
@@ -277,73 +409,189 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
     super.dispose();
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('Question ${index + 1}/${widget.questions.length}')),
-      body: AnimatedContainer(
-        duration: Duration(milliseconds: 300),
-        color: feedbackColor.withOpacity(0.3),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text('Lives: $lives ❤️', style: TextStyle(color: Colors.blueGrey.shade800)),
-                  Text('Score: $score', style: TextStyle(color: Colors.blueGrey.shade800)),
-                  Text('Streak: $streak', style: TextStyle(color: Colors.blueGrey.shade800)),
+  Widget _buildBurstAnimation() {
+    return Center(
+      child: AnimatedBuilder(
+        animation: _burstAnim,
+        builder: (context, child) {
+          double size = 180 * _burstAnim.value;
+          return Opacity(
+            opacity: 1 - (0.7 * (1 - _burstAnim.value)),
+            child: Container(
+              width: size,
+              height: size,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: burstColor,
+                boxShadow: [
+                  BoxShadow(
+                    color: burstColor.withOpacity(0.6),
+                    blurRadius: 40 * _burstAnim.value,
+                    spreadRadius: 10 * _burstAnim.value,
+                  ),
                 ],
               ),
-              SizedBox(height: 16),
-              ScaleTransition(
-                scale: _scaleAnim,
-                child: Card(
-                  elevation: 4,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        Text(currentQuestion.letter,
-                            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold)),
-                        SizedBox(height: 12),
-                        Text(currentQuestion.clue,
-                            style: TextStyle(fontSize: 18), textAlign: TextAlign.center),
-                      ],
+              child: Icon(
+                burstColor == Color(0xFF27AE60)
+                    ? Icons.check_circle
+                    : Icons.cancel,
+                color: Colors.white,
+                size: 80 * _burstAnim.value,
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final firstLetter = currentQuestion.answer.isNotEmpty
+        ? currentQuestion.answer[0].toUpperCase()
+        : '';
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Question ${index + 1}/${widget.questions.length}'),
+      ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [Colors.white, Colors.grey[300]!],
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Lives: $lives ❤️',
+                        style: TextStyle(color: Colors.black87),
+                      ),
+                      Text(
+                        'Score: $score',
+                        style: TextStyle(
+                          color: Color(0xFF2C3E50),
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                      Text(
+                        'Streak: $streak',
+                        style: TextStyle(color: Colors.black87),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16),
+                  ScaleTransition(
+                    scale: _scaleAnim,
+                    child: Card(
+                      elevation: 4,
+                      color: Colors.white,
+                      child: Padding(
+                        padding: const EdgeInsets.all(20.0),
+                        child: Column(
+                          children: [
+                            if (showHintLetter)
+                              Text(
+                                firstLetter,
+                                style: TextStyle(
+                                  fontSize: 48,
+                                  fontWeight: FontWeight.bold,
+                                  color: Color(0xFF2C3E50),
+                                ),
+                              ),
+                            Text(
+                              currentQuestion.clue,
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.black87,
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                  SizedBox(height: 12),
+                  LinearProgressIndicator(
+                    value: remainingSeconds / 20,
+                    minHeight: 8,
+                    backgroundColor: Colors.grey[300],
+                    valueColor: AlwaysStoppedAnimation<Color>(
+                      remainingSeconds > 10
+                          ? Color(0xFF27AE60)
+                          : remainingSeconds > 5
+                          ? Color(0xFFF1C40F)
+                          : Color(0xFFE74C3C),
+                    ),
+                  ),
+                  SizedBox(height: 16),
+                  TextField(
+                    controller: _controller,
+                    style: TextStyle(color: Colors.black87),
+                    decoration: InputDecoration(
+                      hintText: 'Type your answer here',
+                      filled: true,
+                      fillColor: Colors.white,
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      hintStyle: TextStyle(color: Colors.black45),
+                      suffixIcon: IconButton(
+                        icon: Icon(Icons.lightbulb, color: Color(0xFFF1C40F)),
+                        tooltip: "Show first letter",
+                        onPressed: () {
+                          setState(() {
+                            showHintLetter = true;
+                          });
+                        },
+                      ),
+                    ),
+                    onSubmitted: (_) => _submit(),
+                  ),
+                  SizedBox(height: 12),
+                  ElevatedButton(
+                    onPressed: _submit,
+                    child: Text(
+                      'Submit Answer',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Color(0xFF2C3E50),
+                      minimumSize: Size.fromHeight(45),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      foregroundColor: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    feedbackText,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: feedbackColor == Colors.transparent
+                          ? Colors.black87
+                          : feedbackColor,
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(height: 12),
-              LinearProgressIndicator(
-                value: remainingSeconds / 20,
-                minHeight: 8,
-                backgroundColor: Colors.grey.shade300,
-                valueColor: AlwaysStoppedAnimation<Color>(Colors.blue.shade400),
-              ),
-              SizedBox(height: 16),
-              TextField(
-                controller: _controller,
-                decoration: InputDecoration(
-                  hintText: 'Type your answer here',
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
-                ),
-                onSubmitted: (_) => _submit(),
-              ),
-              SizedBox(height: 12),
-              ElevatedButton(
-                  onPressed: _submit,
-                  child: Text('Submit Answer'),
-                  style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade700)),
-              SizedBox(height: 20),
-              Text(feedbackText,
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.blueGrey.shade900)),
-            ],
+            ),
           ),
-        ),
+          // Bomb burst animation popup
+          if (showBurst) _buildBurstAnimation(),
+        ],
       ),
     );
   }
@@ -353,41 +601,94 @@ class _GameScreenState extends State<GameScreen> with SingleTickerProviderStateM
 class ResultScreen extends StatelessWidget {
   final int score;
   final int xp;
-  final List<String> badges;
+  final List<String> lastScores;
 
-  ResultScreen({required this.score, required this.xp, required this.badges});
+  ResultScreen({
+    required this.score,
+    required this.xp,
+    required this.lastScores,
+  });
 
   @override
   Widget build(BuildContext context) {
+    final List<String> rankEmojis = ['🥇', '🥈', '🥉', '🏅', '🎖️'];
     return Scaffold(
       appBar: AppBar(title: Text("Game Over")),
       body: Container(
         width: double.infinity,
         padding: EdgeInsets.all(24),
         decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [Colors.grey.shade100, Colors.blue.shade100]),
+          gradient: LinearGradient(
+            colors: [Colors.white, Colors.grey[300]!],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
         ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Score: $score', style: TextStyle(fontSize: 32, color: Colors.blueGrey.shade900)),
+            Text(
+              'Score: $score',
+              style: TextStyle(
+                fontSize: 32,
+                color: Color(0xFF2C3E50),
+                fontWeight: FontWeight.bold,
+              ),
+            ),
             SizedBox(height: 12),
-            Text('XP Earned: $xp', style: TextStyle(fontSize: 24, color: Colors.blueGrey.shade700)),
-            SizedBox(height: 20),
-            Text('Badges:', style: TextStyle(fontSize: 20, color: Colors.blueGrey.shade900)),
-            SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: badges
-                  .map((b) => Chip(label: Text(b), backgroundColor: Colors.amber.shade400))
-                  .toList(),
+            Text(
+              'XP Earned: $xp',
+              style: TextStyle(fontSize: 24, color: Colors.black45),
+            ),
+            SizedBox(height: 30),
+            Text(
+              'Last 5 Scores:',
+              style: TextStyle(fontSize: 18, color: Colors.black87),
+            ),
+            SizedBox(height: 8),
+            Column(
+              children: lastScores.asMap().entries.map((entry) {
+                int idx = entry.key;
+                String score = entry.value;
+                String emoji = idx < rankEmojis.length ? rankEmojis[idx] : '🏅';
+                return Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(emoji, style: TextStyle(fontSize: 22)),
+                    SizedBox(width: 8),
+                    Text(
+                      score,
+                      style: TextStyle(
+                        color: Color(0xFF2C3E50),
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ],
+                );
+              }).toList(),
             ),
             SizedBox(height: 40),
             ElevatedButton(
-                onPressed: () => Navigator.pop(context),
-                child: Text('Play Again'),
-                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue.shade700)),
+              onPressed: () => Navigator.pop(context),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 20,
+                ),
+                child: Text(
+                  'Play Again',
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Color(0xFF2C3E50),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+                foregroundColor: Colors.white,
+              ),
+            ),
           ],
         ),
       ),
