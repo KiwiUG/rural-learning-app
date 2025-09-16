@@ -1,5 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
+import 'package:rural_learning_app/data/profile_service.dart';
 import 'package:rural_learning_app/features/game/wack-a-mole-game.dart';
 
 
@@ -16,6 +17,7 @@ class _WhackAMoleScreenState extends State<WhackAMoleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       // **FIX 1: Add an AppBar for the back button**
       appBar: AppBar(
         // Make the AppBar transparent to see the game behind it
