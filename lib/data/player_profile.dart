@@ -1,13 +1,11 @@
- class PlayerProfile {
+class PlayerProfile {
   int xp;
   int level;
 
   PlayerProfile({this.xp = 0, this.level = 1});
 
-  /// Calculate XP needed for next level
-  int get xpForNextLevel => level * 100; // simple formula (100 XP per level)
+  int get xpForNextLevel => level * 100;
 
-  /// Add XP and handle level up
   void addXP(int amount) {
     xp += amount;
     while (xp >= xpForNextLevel) {
@@ -16,8 +14,15 @@
     }
   }
 
-  Map<String, dynamic> toJson() => {"xp": xp, "level": level};
+  Map<String, dynamic> toJson() => {
+        "xp": xp,
+        "level": level,
+      };
 
-  factory PlayerProfile.fromJson(Map<String, dynamic> json) =>
-      PlayerProfile(xp: json["xp"], level: json["level"]);
+  factory PlayerProfile.fromJson(Map<String, dynamic> json) {
+    return PlayerProfile(
+      xp: json["xp"] ?? 0,
+      level: json["level"] ?? 1,
+    );
+  }
 }

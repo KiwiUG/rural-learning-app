@@ -7,6 +7,7 @@ import 'package:flutter/services.dart' show rootBundle;
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:rural_learning_app/data/player_profile.dart';
+import 'package:rural_learning_app/data/profile_service.dart';
 
 
 class SpellingGameScreen extends StatefulWidget {
@@ -97,10 +98,8 @@ void checkAnswer() {
         : selectedLevel == "medium"
             ? 20
             : 30;
-
+    ProfileService.addXP(xpEarned);
     setState(() {
-      profile.addXP(xpEarned);  // ✅ Give XP
-      saveProfile();            // ✅ Persist profile
       feedback = "✅ +$xpEarned XP!";
       hint="";
       overlayColor = const Color(0xFF00FF7F);

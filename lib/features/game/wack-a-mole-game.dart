@@ -6,7 +6,10 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:rural_learning_app/data/player_profile.dart';
+import 'package:rural_learning_app/data/profile_service.dart';
 import 'mole.dart';
+
 
 class WhackAMoleGame extends FlameGame {
   // --- UI Components ---
@@ -197,6 +200,7 @@ class WhackAMoleGame extends FlameGame {
   }
 
   void restart() {
+    ProfileService.addXP(xp);
     score = 0;
     lives = 3;
     xp = 0;
