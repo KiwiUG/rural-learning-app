@@ -110,6 +110,7 @@ class _ABCGameState extends State<ABCGame> {
     final themes = allQuestions.keys.toList();
 
     return Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(title: Text("Guess the ABC's")),
       body: Padding(
         padding: const EdgeInsets.all(16.0),

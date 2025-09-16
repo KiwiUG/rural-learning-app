@@ -67,6 +67,7 @@ flutter:
     - assets/data/words.json
     - assets/data/questions.json
     - assets/questions.json
+    - assets/images/background.png
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in

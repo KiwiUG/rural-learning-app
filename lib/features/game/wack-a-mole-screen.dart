@@ -8,6 +8,7 @@ class WhackAMoleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.transparent,
       body: GameWidget(
         game: WhackAMoleGame(),
         overlayBuilderMap: {

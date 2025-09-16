@@ -181,6 +181,7 @@ void giveUp() {
  return Stack(
   children: [
     Scaffold(
+      backgroundColor: Colors.transparent,
       appBar: AppBar(
         title: const Text("Spelling Game"),
         centerTitle: true,
