@@ -6,6 +6,7 @@ import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show rootBundle;
 import 'package:rural_learning_app/data/profile_service.dart';
+import 'package:rural_learning_app/main.dart';
 import 'mole.dart';
 
 class WhackAMoleGame extends FlameGame {
@@ -206,7 +207,8 @@ class WhackAMoleGame extends FlameGame {
   }
 
   void gameOver() {
-    ProfileService.addXP(xp);
+    profile.addXP(xp);
+    profile.updateStreak(); // ✅ update streak too
     overlays.add('GameOver');
     pauseEngine();
   }

@@ -98,7 +98,8 @@ void checkAnswer() {
         : selectedLevel == "medium"
             ? 20
             : 30;
-    ProfileService.addXP(xpEarned);
+    profile.addXP(xpEarned);
+    profile.updateStreak(); // ✅ update streak too
     setState(() {
       feedback = "✅ +$xpEarned XP!";
       hint="";
