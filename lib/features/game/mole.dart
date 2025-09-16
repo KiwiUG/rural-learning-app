@@ -1,3 +1,5 @@
+// mole.dart
+
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
@@ -18,12 +20,18 @@ class Mole extends PositionComponent with TapCallbacks {
     required this.text,
     required this.onTap,
     required Vector2 position,
-  }) : super(position: position, size: Vector2.all(80), anchor: Anchor.center);
+    required double diameter,
+  }) : super(
+          position: position,
+          size: Vector2.all(diameter),
+          anchor: Anchor.center,
+        );
 
   @override
   Future<void> onLoad() async {
-    // Circle
+    // No need to call super.onLoad() when it's empty.
     _molePaint.color = const Color.fromARGB(255, 10, 94, 113);
+
     _moleCircle = CircleComponent(
       radius: size.x / 2,
       paint: _molePaint,
@@ -31,10 +39,8 @@ class Mole extends PositionComponent with TapCallbacks {
       position: size / 2,
     );
 
-    // Centered TextComponent inside circle
-    double fontSize = 14;
-    if (text.length > 6) fontSize = 12;
-    if (text.length > 10) fontSize = 10;
+    double fontSize = size.x * 0.25;
+    if (text.length > 8) fontSize *= 0.8;
 
     _textComponent = TextComponent(
       text: text,
@@ -48,17 +54,19 @@ class Mole extends PositionComponent with TapCallbacks {
         ),
       ),
     );
-  }
-
-  void popUp() {
+    
+    // **FIX:** Move popUp logic here
     state = MoleState.visible;
+    scale = Vector2.zero(); // Start scaled down
     addAll([_moleCircle, _textComponent]);
-
     add(ScaleEffect.to(
       Vector2.all(1.0),
-      EffectController(duration: 0.2, curve: Curves.easeOutBack),
+      EffectController(duration: 0.25, curve: Curves.easeOutBack),
     ));
   }
+
+  // **FIX:** This method is no longer needed and can be removed.
+  // void popUp() { ... }
 
   void reveal(bool isCorrect, bool wasTapped) {
     if (wasTapped) {
