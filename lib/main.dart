@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:rural_learning_app/features/game/wack-a-mole-screen.dart';
-import 'features/game/spelling_game.dart';
-import 'features/game/abcgame.dart';
 import 'features/components/homepage.dart';
-import 'robo/screens/splash_screen.dart';
-
-import 'package:hive/hive.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:rural_learning_app/data/player_profile.dart';
 
 void main() async {
@@ -24,30 +17,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      builder: (context, child) {
-        return Container(
-          decoration: const BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/background.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-          child: child,
-        );
-      },
-      home: const DashboardScreen(),
+      home: const RootPage(),
     );
   }
 }
 
-class DashboardScreen extends StatefulWidget {
-  const DashboardScreen({super.key});
+class RootPage extends StatefulWidget {
+  const RootPage({super.key});
 
   @override
-  State<DashboardScreen> createState() => _DashboardScreenState();
+  State<RootPage> createState() => _RootPageState();
 }
 
-class _DashboardScreenState extends State<DashboardScreen> {
+class _RootPageState extends State<RootPage> {
   late PlayerProfile profile;
 
   @override
@@ -62,160 +44,25 @@ class _DashboardScreenState extends State<DashboardScreen> {
     if (saved != null) {
       profile = PlayerProfile.fromJson(Map<String, dynamic>.from(saved));
     } else {
-      profile = PlayerProfile();
+      profile = PlayerProfile(); // default profile
       box.put('profile', profile.toJson());
     }
-    setState(() {}); // refresh UI
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.transparent,
-      appBar: AppBar(
-        title: const Text("Learning Dashboard"),
-        centerTitle: true,
-      ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(color: Colors.green),
-              child: Text(
-                'Menu',
-                style: TextStyle(color: Colors.white, fontSize: 24),
-              ),
-            ),
-            ListTile(
-              leading: const Icon(Icons.home),
-              title: const Text('Homepage'),
-              onTap: () {
-                Navigator.pop(context); // close drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => HomePage(
-                      xp: profile.xp,
-                      level: profile.level,
-                      xpForNextLevel: profile.xpForNextLevel,
-                    ),
-                  ),
-                ).then((_) {
-                  setState(() {
-                    loadProfile();
-                  });
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text('Robo Game'),
-              onTap: () {
-                Navigator.pop(context); // close drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SplashScreen()),
-                ).then((_) {
-                  setState(() {
-                    loadProfile();
-                  });
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.book),
-              title: const Text('Wack a Mole'),
-              onTap: () {
-                Navigator.pop(context); // close drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => WhackAMoleScreen()),
-                ).then((_) {
-                  setState(() {
-                    loadProfile();
-                  });
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.quiz),
-              title: const Text('STEM Quiz'),
-              onTap: () {
-                Navigator.pop(context); // close drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ABCGame()),
-                ).then((_) {
-                  setState(() {
-                    loadProfile();
-                  });
-                });
-              },
-            ),
-            ListTile(
-              leading: const Icon(Icons.videogame_asset),
-              title: const Text('Spelling Game'),
-              onTap: () {
-                Navigator.pop(context); // close drawer
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => const SpellingGameScreen(),
-                  ),
-                ).then((_) {
-                  setState(() {
-                    loadProfile();
-                  });
-                });
-              },
-            ),
-          ],
-        ),
-      ),
-      body: Center(
-        child: profile == null
-            ? const CircularProgressIndicator()
-            : Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  const Text(
-                    "Welcome 👋",
-                    style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 20),
-                  Card(
-                    elevation: 4,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Column(
-                        children: [
-                          Text(
-                            "Level: ${profile.level}",
-                            style: const TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          LinearProgressIndicator(
-                            value: profile.xp / profile.xpForNextLevel,
-                            backgroundColor: Colors.grey[300],
-                            color: Colors.greenAccent,
-                            minHeight: 8,
-                          ),
-                          const SizedBox(height: 8),
-                          Text("${profile.xp} / ${profile.xpForNextLevel} XP"),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-      ),
+    if (profile == null) {
+      return const Scaffold(
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
+
+    // Open HomePage directly with profile data
+    return HomePage(
+      xp: profile.xp,
+      level: profile.level,
+      xpForNextLevel: profile.xpForNextLevel,
     );
   }
 }

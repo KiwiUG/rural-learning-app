@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dashboard.dart';
 
+
 class AppColors {
-  static const background = Color(0xFFF2F2F2);
   static const accentBlue = Color(0xFF6A8C99);
   static const cardWhite = Color(0xFFFFFFFF);
   static const textDark = Color(0xFF1E1E1E);
@@ -24,29 +24,21 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.background,
       body: Stack(
         children: [
-          // Background shapes
-          Positioned(
-            top: 100,
-            left: -60,
-            right: -60,
-            child: Container(
-              height: 300,
-              decoration: const BoxDecoration(
-                color: Color(0xFFE6E6E6),
-                shape: BoxShape.circle,
-              ),
+          // Full-screen background image
+          SizedBox.expand(
+            child: Image.asset(
+              'assets/images/background.png',
+              fit: BoxFit.cover,
             ),
           ),
-          Positioned(
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: CustomPaint(painter: DiagonalPainter()),
+
+          // Optional: semi-transparent overlay for readability
+          Container(
+            color: Colors.black.withOpacity(0.3),
           ),
+
           // Foreground content
           LayoutBuilder(
             builder: (context, constraints) {
@@ -62,8 +54,8 @@ class HomePage extends StatelessWidget {
                         child: Column(
                           children: [
                             CircleAvatar(
-                              radius: 40,
-                              backgroundColor: AppColors.alertRed,
+                              radius: 60,
+                              backgroundColor: const Color.fromARGB(255, 107, 106, 106),
                               child: const Icon(
                                 Icons.person,
                                 size: 44,
@@ -76,7 +68,7 @@ class HomePage extends StatelessWidget {
                               style: const TextStyle(
                                 fontSize: 22,
                                 fontWeight: FontWeight.bold,
-                                color: AppColors.textDark,
+                                color: AppColors.cardWhite,
                               ),
                             ),
                             const SizedBox(height: 6),
@@ -84,7 +76,7 @@ class HomePage extends StatelessWidget {
                               "Level: $level",
                               style: const TextStyle(
                                 fontSize: 16,
-                                color: AppColors.accentBlue,
+                                color: Color.fromARGB(255, 240, 238, 114),
                                 fontWeight: FontWeight.w600,
                               ),
                             ),
@@ -171,28 +163,6 @@ class HomePage extends StatelessWidget {
       ),
     );
   }
-}
-
-// Painter for the diagonal blue shape
-class DiagonalPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = AppColors.accentBlue
-      ..style = PaintingStyle.fill;
-
-    final path = Path();
-    path.moveTo(size.width * 0.6, 0);
-    path.lineTo(size.width, size.height * 0.5);
-    path.lineTo(size.width * 0.6, size.height);
-    path.lineTo(size.width * 0.3, size.height);
-    path.close();
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
 
 // Reusable Menu Button

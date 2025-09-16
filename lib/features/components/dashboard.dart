@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'homepage.dart';
 import 'package:rural_learning_app/features/game/spelling_game.dart';
 import 'package:rural_learning_app/features/game/wack-a-mole-screen.dart';
 import 'package:rural_learning_app/features/game/abcgame.dart';
 import 'package:rural_learning_app/robo/screens/splash_screen.dart';
+
 
 class AppColors {
   static const gradientStart = Color(0xFFEFEFEF);
@@ -31,7 +33,6 @@ class DashboardScreen extends StatelessWidget {
         ),
         child: Stack(
           children: [
-            // Bottom geometric mountains
             Positioned(
               bottom: 0,
               left: 0,
@@ -41,16 +42,28 @@ class DashboardScreen extends StatelessWidget {
                 painter: MountainPainter(),
               ),
             ),
-
-            // Foreground content
             SafeArea(
               child: Center(
                 child: Column(
                   mainAxisSize: MainAxisSize.max,
                   children: [
                     const SizedBox(height: 40),
-                    // Big Home Icon
-                    Icon(Icons.home, size: 80, color: AppColors.accentBlue),
+                    IconButton(
+                      icon: Icon(Icons.home, size: 80, color: AppColors.accentBlue),
+                      onPressed: () {
+                        // Navigate to HomePage with required parameters
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(
+                              xp: 120,
+                              level: 3,
+                              xpForNextLevel: 200,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
                     const SizedBox(height: 16),
                     const Text(
                       "Dashboard",
@@ -61,53 +74,53 @@ class DashboardScreen extends StatelessWidget {
                       ),
                     ),
                     const Spacer(),
-
-                    // Buttons centered and redirecting to respective screens
                     MenuButton(
-                      label: "SPELL THE SOUND",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const SpellingGameScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    MenuButton(
-                      label: "MAP IT",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SplashScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    MenuButton(
-                      label: "WACK-A-MOLE",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => WhackAMoleScreen(),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(height: 20),
-                    MenuButton(
-                      label: "STEM QUIZ",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => ABCGame()),
-                        );
-                      },
-                    ),
+  label: "SPELL THE SOUND",
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SpellingGameScreen(), // your spelling game screen
+      ),
+    );
+  },
+),
+const SizedBox(height: 20),
+MenuButton(
+  label: "ROBO QUEST",
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SplashScreen(), // your map screen or splash
+      ),
+    );
+  },
+),
+const SizedBox(height: 20),
+MenuButton(
+  label: "WACK-A-MOLE",
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => WhackAMoleScreen(), // your Wack-A-Mole screen
+      ),
+    );
+  },
+),
+const SizedBox(height: 20),
+MenuButton(
+  label: "STEM QUIZ",
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => ABCGame(), // your STEM quiz screen
+      ),
+    );
+  },
+),
 
                     const Spacer(flex: 2),
                   ],
@@ -121,7 +134,6 @@ class DashboardScreen extends StatelessWidget {
   }
 }
 
-// Custom painter for bottom shapes
 class MountainPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
@@ -129,15 +141,12 @@ class MountainPainter extends CustomPainter {
     final paint2 = Paint()..color = const Color(0xFF6A8C99);
     final paint3 = Paint()..color = const Color(0xFF9E9E9E);
 
-    // Left dark mountain
     final path1 = Path();
     path1.moveTo(0, size.height);
     path1.lineTo(size.width * 0.25, 0);
     path1.lineTo(size.width * 0.5, size.height);
     path1.close();
     canvas.drawPath(path1, paint1);
-
-    // Middle blue mountainimport 'robo/screens/splash_screen.dart';
 
     final path2 = Path();
     path2.moveTo(size.width * 0.2, size.height);
@@ -146,7 +155,6 @@ class MountainPainter extends CustomPainter {
     path2.close();
     canvas.drawPath(path2, paint2);
 
-    // Right grey mountain
     final path3 = Path();
     path3.moveTo(size.width * 0.5, size.height);
     path3.lineTo(size.width * 0.75, 0);
@@ -159,7 +167,6 @@ class MountainPainter extends CustomPainter {
   bool shouldRepaint(covariant CustomPainter oldDelegate) => false;
 }
 
-// Reusable button
 class MenuButton extends StatelessWidget {
   final String label;
   final VoidCallback onPressed;
