@@ -1,7 +1,7 @@
 // screens/game_screen.dart
 import 'package:flutter/material.dart';
-import '../models/level.dart';
-import '../models/robot.dart';
+import 'models/level.dart';
+import 'models/robot.dart';
 import '../widgets/grid_widget.dart';
 import '../widgets/command_input.dart';
 

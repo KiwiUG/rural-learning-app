@@ -3,6 +3,7 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:rural_learning_app/features/game/wack-a-mole-screen.dart';
 import 'features/game/spelling_game.dart';
 import 'features/game/abcgame.dart';
+import 'robo/screens/splash_screen.dart';
 
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -85,6 +86,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 'Menu',
                 style: TextStyle(color: Colors.white, fontSize: 24),
               ),
+            ),
+            ListTile(
+              leading: const Icon(Icons.book),
+              title: const Text('Robo Game'),
+              onTap: () {
+    Navigator.pop(context); // close drawer
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>  SplashScreen(),
+      ),
+    ).then((_) {
+      // ✅ refresh when returning from game
+      setState(() {
+        loadProfile();
+      });
+    });
+  },
             ),
             ListTile(
               leading: const Icon(Icons.book),
