@@ -3,12 +3,12 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:rural_learning_app/features/game/wack-a-mole-screen.dart';
 import 'features/game/spelling_game.dart';
 import 'features/game/abcgame.dart';
+import 'features/components/homepage.dart';
 import 'robo/screens/splash_screen.dart';
 
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:rural_learning_app/data/player_profile.dart';
-
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -88,78 +88,88 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             ListTile(
+              leading: const Icon(Icons.home),
+              title: const Text('Homepage'),
+              onTap: () {
+                Navigator.pop(context); // close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => HomePage(
+                      xp: profile.xp,
+                      level: profile.level,
+                      xpForNextLevel: profile.xpForNextLevel,
+                    ),
+                  ),
+                ).then((_) {
+                  setState(() {
+                    loadProfile();
+                  });
+                });
+              },
+            ),
+            ListTile(
               leading: const Icon(Icons.book),
               title: const Text('Robo Game'),
               onTap: () {
-    Navigator.pop(context); // close drawer
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) =>  SplashScreen(),
-      ),
-    ).then((_) {
-      // ✅ refresh when returning from game
-      setState(() {
-        loadProfile();
-      });
-    });
-  },
+                Navigator.pop(context); // close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => SplashScreen()),
+                ).then((_) {
+                  setState(() {
+                    loadProfile();
+                  });
+                });
+              },
             ),
             ListTile(
               leading: const Icon(Icons.book),
               title: const Text('Wack a Mole'),
               onTap: () {
-    Navigator.pop(context); // close drawer
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) =>  WhackAMoleScreen(),
-      ),
-    ).then((_) {
-      // ✅ refresh when returning from game
-      setState(() {
-        loadProfile();
-      });
-    });
-  },
+                Navigator.pop(context); // close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => WhackAMoleScreen()),
+                ).then((_) {
+                  setState(() {
+                    loadProfile();
+                  });
+                });
+              },
             ),
             ListTile(
               leading: const Icon(Icons.quiz),
               title: const Text('STEM Quiz'),
               onTap: () {
-    Navigator.pop(context); // close drawer
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) =>  ABCGame(),
-      ),
-    ).then((_) {
-      // ✅ refresh when returning from game
-      setState(() {
-        loadProfile();
-      });
-    });
-  },
+                Navigator.pop(context); // close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ABCGame()),
+                ).then((_) {
+                  setState(() {
+                    loadProfile();
+                  });
+                });
+              },
             ),
             ListTile(
-  leading: const Icon(Icons.videogame_asset),
-  title: const Text('Spelling Game'),
-  onTap: () {
-    Navigator.pop(context); // close drawer
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => const SpellingGameScreen(),
-      ),
-    ).then((_) {
-      // ✅ refresh when returning from game
-      setState(() {
-        loadProfile();
-      });
-    });
-  },
-),
-
+              leading: const Icon(Icons.videogame_asset),
+              title: const Text('Spelling Game'),
+              onTap: () {
+                Navigator.pop(context); // close drawer
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const SpellingGameScreen(),
+                  ),
+                ).then((_) {
+                  setState(() {
+                    loadProfile();
+                  });
+                });
+              },
+            ),
           ],
         ),
       ),
@@ -183,9 +193,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       padding: const EdgeInsets.all(20),
                       child: Column(
                         children: [
-                          Text("Level: ${profile.level}",
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
+                          Text(
+                            "Level: ${profile.level}",
+                            style: const TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
                           const SizedBox(height: 8),
                           LinearProgressIndicator(
                             value: profile.xp / profile.xpForNextLevel,
