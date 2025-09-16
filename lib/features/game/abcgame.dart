@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:rural_learning_app/data/profile_service.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// Question model
@@ -129,6 +130,8 @@ class _ABCGameState extends State<ABCGame> {
     final List<String> rankEmojis = ['🥇', '🥈', '🥉', '🏅', '🎖️'];
 
     return Scaffold(
+
+      backgroundColor: Colors.transparent,
       appBar: AppBar(title: Text("STEM Quiz")),
       body: Container(
         decoration: BoxDecoration(
@@ -383,6 +386,7 @@ class _GameScreenState extends State<GameScreen>
     final high = prefs.getInt('highscore') ?? 0;
     if (score > high) await prefs.setInt('highscore', score);
 
+    ProfileService.addXP(xp);
     // Save last 5 scores
     List<String> lastScores = prefs.getStringList('lastScores') ?? [];
     lastScores.insert(0, score.toString());

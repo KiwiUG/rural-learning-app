@@ -1,0 +1,2391 @@
+{
+  "easy": [
+    {
+      "question": "What is H₂O?",
+      "options": ["Oxygen", "Water", "Salt"],
+      "correct": 1
+    },
+    {
+      "question": "Which planet is the Red Planet?",
+      "options": ["Venus", "Mars", "Jupiter"],
+      "correct": 1
+    },
+    {
+      "question": "How many legs does a spider have?",
+      "options": ["6", "8", "10"],
+      "correct": 1
+    },
+    {
+      "question": "What gas do plants breathe in?",
+      "options": ["Oxygen", "Nitrogen", "Carbon Dioxide"],
+      "correct": 2
+    },
+    {
+      "question": "What is the center of our solar system?",
+      "options": ["Moon", "Sun", "Earth"],
+      "correct": 1
+    },
+    {
+      "question": "What is a baby cat called?",
+      "options": ["Puppy", "Kitten", "Calf"],
+      "correct": 1
+    },
+    {
+      "question": "What do bees make?",
+      "options": ["Milk", "Honey", "Silk"],
+      "correct": 1
+    },
+    {
+      "question": "What is the largest land animal?",
+      "options": ["Elephant", "Whale", "Giraffe"],
+      "correct": 0
+    },
+    {
+      "question": "What part of a plant absorbs water?",
+      "options": ["Leaf", "Stem", "Roots"],
+      "correct": 2
+    },
+    {
+      "question": "What do you call a group of fish?",
+      "options": ["Herd", "Flock", "School"],
+      "correct": 2
+    },
+    {
+      "question": "Which animal is the 'King of the Jungle'?",
+      "options": ["Tiger", "Lion", "Bear"],
+      "correct": 1
+    },
+    {
+      "question": "What color is a banana?",
+      "options": ["Red", "Yellow", "Blue"],
+      "correct": 1
+    },
+    {
+      "question": "What do caterpillars turn into?",
+      "options": ["Moths", "Butterflies", "Bees"],
+      "correct": 1
+    },
+    {
+      "question": "How many legs does an insect have?",
+      "options": ["4", "6", "8"],
+      "correct": 1
+    },
+    {
+      "question": "What is the fastest land animal?",
+      "options": ["Lion", "Cheetah", "Horse"],
+      "correct": 1
+    },
+    {
+      "question": "What type of animal is a frog?",
+      "options": ["Reptile", "Mammal", "Amphibian"],
+      "correct": 2
+    },
+    {
+      "question": "Where do penguins live?",
+      "options": ["Arctic", "Antarctica", "Africa"],
+      "correct": 1
+    },
+    {
+      "question": "What is the main source of energy for Earth?",
+      "options": ["Moon", "Wind", "Sun"],
+      "correct": 2
+    },
+    {
+      "question": "What is a baby dog called?",
+      "options": ["Kitten", "Puppy", "Joey"],
+      "correct": 1
+    },
+    {
+      "question": "What do carnivores eat?",
+      "options": ["Plants", "Meat", "Both"],
+      "correct": 1
+    },
+    {
+      "question": "What is the hard shell of a turtle called?",
+      "options": ["Exoskeleton", "Carapace", "Shield"],
+      "correct": 1
+    },
+    {
+      "question": "What is the process of a seed growing called?",
+      "options": ["Sprouting", "Germination", "Blooming"],
+      "correct": 1
+    },
+    {
+      "question": "What is the largest bird?",
+      "options": ["Eagle", "Ostrich", "Penguin"],
+      "correct": 1
+    },
+    {
+      "question": "What do herbivores eat?",
+      "options": ["Meat", "Insects", "Plants"],
+      "correct": 2
+    },
+    {
+      "question": "Which part of a flower makes pollen?",
+      "options": ["Petal", "Stamen", "Pistil"],
+      "correct": 1
+    },
+    {
+      "question": "What season follows summer?",
+      "options": ["Winter", "Autumn", "Spring"],
+      "correct": 1
+    },
+    {
+      "question": "Which animal says 'oink'?",
+      "options": ["Cow", "Sheep", "Pig"],
+      "correct": 2
+    },
+    {
+      "question": "What is a group of wolves called?",
+      "options": ["Pack", "Herd", "Pride"],
+      "correct": 0
+    },
+    {
+      "question": "What is the tallest animal?",
+      "options": ["Elephant", "Giraffe", "Hippo"],
+      "correct": 1
+    },
+    {
+      "question": "What do we use our ears for?",
+      "options": ["Seeing", "Hearing", "Smelling"],
+      "correct": 1
+    },
+    {
+      "question": "What are the colored parts of a flower?",
+      "options": ["Leaves", "Roots", "Petals"],
+      "correct": 2
+    },
+    {
+      "question": "What is the opposite of day?",
+      "options": ["Morning", "Night", "Evening"],
+      "correct": 1
+    },
+    {
+      "question": "How many continents are there?",
+      "options": ["5", "6", "7"],
+      "correct": 2
+    },
+    {
+      "question": "What is a shark?",
+      "options": ["Mammal", "Fish", "Reptile"],
+      "correct": 1
+    },
+    {
+      "question": "What is a house made of ice called?",
+      "options": ["Tent", "Igloo", "Hut"],
+      "correct": 1
+    },
+    {
+      "question": "What color are emeralds?",
+      "options": ["Red", "Blue", "Green"],
+      "correct": 2
+    },
+    {
+      "question": "What is the main gas we breathe out?",
+      "options": ["Oxygen", "Carbon Dioxide", "Nitrogen"],
+      "correct": 1
+    },
+    {
+      "question": "What shape is a stop sign?",
+      "options": ["Circle", "Octagon", "Square"],
+      "correct": 1
+    },
+    {
+      "question": "What is a body of saltwater called?",
+      "options": ["River", "Lake", "Ocean"],
+      "correct": 2
+    },
+    {
+      "question": "What is a tadpole?",
+      "options": ["Baby Frog", "Baby Fish", "Baby Snake"],
+      "correct": 0
+    },
+    {
+      "question": "What is a spider's home called?",
+      "options": ["Nest", "Web", "Hive"],
+      "correct": 1
+    },
+    {
+      "question": "What is the opposite of hot?",
+      "options": ["Warm", "Cold", "Spicy"],
+      "correct": 1
+    },
+    {
+      "question": "What planet do we live on?",
+      "options": ["Mars", "Earth", "Venus"],
+      "correct": 1
+    },
+    {
+      "question": "What is the frozen form of water?",
+      "options": ["Steam", "Liquid", "Ice"],
+      "correct": 2
+    },
+    {
+      "question": "Which animal has a long trunk?",
+      "options": ["Giraffe", "Elephant", "Monkey"],
+      "correct": 1
+    },
+    {
+      "question": "What do cows produce?",
+      "options": ["Wool", "Milk", "Eggs"],
+      "correct": 1
+    },
+    {
+      "question": "What is the main color of grass?",
+      "options": ["Blue", "Green", "Red"],
+      "correct": 1
+    },
+    {
+      "question": "What do we call the star we see during the day?",
+      "options": ["Moon", "Sirius", "Sun"],
+      "correct": 2
+    },
+    {
+      "question": "What is a period of 100 years called?",
+      "options": ["Decade", "Century", "Millennium"],
+      "correct": 1
+    },
+    {
+      "question": "What is a male lion called?",
+      "options": ["Tiger", "Lion", "Panther"],
+      "correct": 1
+    },
+    {
+      "question": "How many sides does a triangle have?",
+      "options": ["3", "4", "5"],
+      "correct": 0
+    },
+    {
+      "question": "What is 2 + 2?",
+      "options": ["3", "4", "5"],
+      "correct": 1
+    },
+    {
+      "question": "What is 5 - 3?",
+      "options": ["1", "2", "3"],
+      "correct": 1
+    },
+    {
+      "question": "How many wheels on a bicycle?",
+      "options": ["2", "3", "4"],
+      "correct": 0
+    },
+    {
+      "question": "What is the boiling point of water?",
+      "options": ["100°C", "0°C", "50°C"],
+      "correct": 0
+    },
+    {
+      "question": "Sound travels fastest through?",
+      "options": ["Air", "Water", "Solids"],
+      "correct": 2
+    },
+    {
+      "question": "What number comes after nine?",
+      "options": ["Eight", "Ten", "Seven"],
+      "correct": 1
+    },
+    {
+      "question": "What is 3 x 3?",
+      "options": ["6", "9", "12"],
+      "correct": 1
+    },
+    {
+      "question": "Which is a primary color?",
+      "options": ["Green", "Orange", "Red"],
+      "correct": 2
+    },
+    {
+      "question": "How many days are in a week?",
+      "options": ["5", "7", "10"],
+      "correct": 1
+    },
+    {
+      "question": "What shape has four equal sides?",
+      "options": ["Rectangle", "Square", "Circle"],
+      "correct": 1
+    },
+    {
+      "question": "What is half of 10?",
+      "options": ["4", "5", "6"],
+      "correct": 1
+    },
+    {
+      "question": "What is a tool to measure temperature?",
+      "options": ["Ruler", "Scale", "Thermometer"],
+      "correct": 2
+    },
+    {
+      "question": "What state of matter is steam?",
+      "options": ["Solid", "Liquid", "Gas"],
+      "correct": 2
+    },
+    {
+      "question": "What metal is attracted to a magnet?",
+      "options": ["Wood", "Iron", "Plastic"],
+      "correct": 1
+    },
+    {
+      "question": "What is 10 divided by 2?",
+      "options": ["4", "5", "6"],
+      "correct": 1
+    },
+    {
+      "question": "How many months in a year?",
+      "options": ["10", "12", "14"],
+      "correct": 1
+    },
+    {
+      "question": "What is a round shape called?",
+      "options": ["Square", "Triangle", "Circle"],
+      "correct": 2
+    },
+    {
+      "question": "What force makes things fall down?",
+      "options": ["Push", "Gravity", "Friction"],
+      "correct": 1
+    },
+    {
+      "question": "Which is heavier, a kilogram of feathers or iron?",
+      "options": ["Iron", "Feathers", "Same"],
+      "correct": 2
+    },
+    {
+      "question": "How many sides does a hexagon have?",
+      "options": ["5", "6", "8"],
+      "correct": 1
+    },
+    {
+      "question": "What is the freezing point of water?",
+      "options": ["0°C", "10°C", "-5°C"],
+      "correct": 0
+    },
+    {
+      "question": "What do we use to see tiny things?",
+      "options": ["Telescope", "Microscope", "Binoculars"],
+      "correct": 1
+    },
+    {
+      "question": "Which direction does a compass point?",
+      "options": ["South", "East", "North"],
+      "correct": 2
+    },
+    {
+      "question": "What is the sum of angles in a triangle?",
+      "options": ["90°", "180°", "360°"],
+      "correct": 1
+    },
+    {
+      "question": "What is the result of 8 + 5?",
+      "options": ["12", "13", "14"],
+      "correct": 1
+    },
+    {
+      "question": "How many fingers on one hand?",
+      "options": ["4", "5", "6"],
+      "correct": 1
+    },
+    {
+      "question": "Which is an even number?",
+      "options": ["3", "5", "8"],
+      "correct": 2
+    },
+    {
+      "question": "What is a straight line of light called?",
+      "options": ["Curve", "Ray", "Wave"],
+      "correct": 1
+    },
+    {
+      "question": "Which of these floats on water?",
+      "options": ["Rock", "Wood", "Metal"],
+      "correct": 1
+    },
+    {
+      "question": "How many hours in a day?",
+      "options": ["12", "24", "36"],
+      "correct": 1
+    },
+    {
+      "question": "What is the result of 15 - 7?",
+      "options": ["7", "8", "9"],
+      "correct": 1
+    },
+    {
+      "question": "Which is an odd number?",
+      "options": ["2", "4", "7"],
+      "correct": 2
+    },
+    {
+      "question": "What does a rainbow show?",
+      "options": ["Colors", "Shapes", "Sounds"],
+      "correct": 0
+    },
+    {
+      "question": "Which tool measures length?",
+      "options": ["Clock", "Ruler", "Compass"],
+      "correct": 1
+    },
+    {
+      "question": "What is a period of 60 minutes?",
+      "options": ["Second", "Hour", "Day"],
+      "correct": 1
+    },
+    {
+      "question": "How many sides does a rectangle have?",
+      "options": ["3", "4", "5"],
+      "correct": 1
+    },
+    {
+      "question": "What is a push or a pull?",
+      "options": ["Energy", "Force", "Power"],
+      "correct": 1
+    },
+    {
+      "question": "What is the opposite of addition?",
+      "options": ["Multiplication", "Subtraction", "Division"],
+      "correct": 1
+    },
+    {
+      "question": "What is the shape of a ball?",
+      "options": ["Cube", "Sphere", "Pyramid"],
+      "correct": 1
+    },
+    {
+      "question": "What does a plant need to grow besides water?",
+      "options": ["Darkness", "Sunlight", "Wind"],
+      "correct": 1
+    },
+    {
+      "question": "How many items in a dozen?",
+      "options": ["10", "12", "20"],
+      "correct": 1
+    },
+    {
+      "question": "What is the symbol for addition?",
+      "options": ["-", "+", "x"],
+      "correct": 1
+    },
+    {
+      "question": "What is a lightning bolt?",
+      "options": ["Sound", "Heat", "Electricity"],
+      "correct": 2
+    },
+    {
+      "question": "What is a very strong wind called?",
+      "options": ["Breeze", "Hurricane", "Rain"],
+      "correct": 1
+    },
+    {
+      "question": "How many zeros in one hundred?",
+      "options": ["1", "2", "3"],
+      "correct": 1
+    },
+    {
+      "question": "What is a single unit of a digital image?",
+      "options": ["Dot", "Pixel", "Spot"],
+      "correct": 1
+    },
+    {
+      "question": "What instrument measures time?",
+      "options": ["Barometer", "Clock", "Meter"],
+      "correct": 1
+    },
+    {
+      "question": "Which is the largest number?",
+      "options": ["99", "101", "9"],
+      "correct": 1
+    },
+    {
+      "question": "What is a mixture of two or more metals?",
+      "options": ["Compound", "Alloy", "Solution"],
+      "correct": 1
+    },
+    {
+      "question": "What device do you use to type?",
+      "options": ["Mouse", "Keyboard", "Monitor"],
+      "correct": 1
+    },
+    {
+      "question": "What do you use to click on screen items?",
+      "options": ["Keyboard", "Mouse", "Speaker"],
+      "correct": 1
+    },
+    {
+      "question": "What is the 'brain' of the computer?",
+      "options": ["RAM", "CPU", "GPU"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'www' stand for?",
+      "options": ["World Wide Web", "Wide World Web", "Web World Wide"],
+      "correct": 0
+    },
+    {
+      "question": "What company makes the iPhone?",
+      "options": ["Google", "Apple", "Samsung"],
+      "correct": 1
+    },
+    {
+      "question": "What do you use to watch videos on a computer?",
+      "options": ["Speaker", "Monitor", "Keyboard"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common way to send a message online?",
+      "options": ["Letter", "Email", "Fax"],
+      "correct": 1
+    },
+    {
+      "question": "What is a portable computer called?",
+      "options": ["Desktop", "Laptop", "Server"],
+      "correct": 1
+    },
+    {
+      "question": "What is a small picture on a screen called?",
+      "options": ["Icon", "Button", "Window"],
+      "correct": 0
+    },
+    {
+      "question": "What is the main part of a website address?",
+      "options": ["Domain Name", "IP Address", "File Name"],
+      "correct": 0
+    },
+    {
+      "question": "What software helps you browse the internet?",
+      "options": ["Browser", "Word Processor", "Spreadsheet"],
+      "correct": 0
+    },
+    {
+      "question": "What is a program that can harm your computer?",
+      "options": ["Virus", "Cookie", "Firewall"],
+      "correct": 0
+    },
+    {
+      "question": "What is a physical part of a computer called?",
+      "options": ["Software", "Hardware", "Firmware"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'AI' stand for?",
+      "options": [
+        "Automated Intelligence",
+        "Artificial Intelligence",
+        "Algorithmic Intelligence"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What do you call a set of instructions for a computer?",
+      "options": ["Program", "Hardware", "Data"],
+      "correct": 0
+    },
+    {
+      "question": "What is a device that prints documents?",
+      "options": ["Scanner", "Printer", "Monitor"],
+      "correct": 1
+    },
+    {
+      "question": "What is the temporary memory of a computer?",
+      "options": ["ROM", "RAM", "HDD"],
+      "correct": 1
+    },
+    {
+      "question": "What is a wireless way to connect to the internet?",
+      "options": ["Cable", "Wi-Fi", "Dial-up"],
+      "correct": 1
+    },
+    {
+      "question": "What is a popular video sharing website?",
+      "options": ["Facebook", "YouTube", "Twitter"],
+      "correct": 1
+    },
+    {
+      "question": "What is a handheld device for calls and apps?",
+      "options": ["Tablet", "Smartphone", "Laptop"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common file format for pictures?",
+      "options": ["MP3", "JPEG", "DOC"],
+      "correct": 1
+    },
+    {
+      "question": "What protects a computer from unauthorized access?",
+      "options": ["Firewall", "Antivirus", "Cookie"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common type of computer battery?",
+      "options": ["Lithium-ion", "Alkaline", "Lead-acid"],
+      "correct": 0
+    },
+    {
+      "question": "What is a device that stores data long-term?",
+      "options": ["RAM", "Hard Drive", "CPU"],
+      "correct": 1
+    },
+    {
+      "question": "What is 'cloud computing'?",
+      "options": ["Weather Forecast", "Internet Services", "Local Storage"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common way to charge a phone?",
+      "options": ["USB Cable", "Ethernet Cable", "HDMI Cable"],
+      "correct": 0
+    },
+    {
+      "question": "What is a digital book called?",
+      "options": ["e-book", "i-book", "d-book"],
+      "correct": 0
+    },
+    {
+      "question": "What do you call a single dot on a screen?",
+      "options": ["Pixel", "Bit", "Byte"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to search for information online?",
+      "options": ["Search Engine", "Library", "Directory"],
+      "correct": 0
+    },
+    {
+      "question": "What is a device that lets you hear audio?",
+      "options": ["Microphone", "Speaker", "Camera"],
+      "correct": 1
+    },
+    {
+      "question": "What company created the Android OS?",
+      "options": ["Apple", "Microsoft", "Google"],
+      "correct": 2
+    },
+    {
+      "question": "What is a common unit of digital information?",
+      "options": ["Gram", "Meter", "Byte"],
+      "correct": 2
+    },
+    {
+      "question": "What is a video call?",
+      "options": ["Voice Call", "Face-to-face Chat", "Text Message"],
+      "correct": 1
+    },
+    {
+      "question": "What is a program used to write documents?",
+      "options": ["Word Processor", "Browser", "Game"],
+      "correct": 0
+    },
+    {
+      "question": "What is the main screen of a phone or computer?",
+      "options": ["Desktop", "Homepage", "Lock Screen"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common social media platform?",
+      "options": ["Gmail", "Instagram", "Chrome"],
+      "correct": 1
+    },
+    {
+      "question": "What is a device to capture images?",
+      "options": ["Printer", "Camera", "Scanner"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common file format for music?",
+      "options": ["MP3", "JPG", "PDF"],
+      "correct": 0
+    },
+    {
+      "question": "What is the process of turning off a computer called?",
+      "options": ["Shutdown", "Restart", "Sleep"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to back up data?",
+      "options": ["Cloud Storage", "RAM", "CPU"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to connect a mouse or keyboard?",
+      "options": ["HDMI", "USB", "VGA"],
+      "correct": 1
+    },
+    {
+      "question": "What is a program that lets you play games?",
+      "options": ["Game", "Application", "OS"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to unlock a phone?",
+      "options": ["Password", "PIN", "Fingerprint"],
+      "correct": 2
+    },
+    {
+      "question": "What is a common way to send files?",
+      "options": ["Attachment", "Link", "Text"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to watch movies online?",
+      "options": ["Streaming", "Downloading", "Broadcasting"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to listen to music online?",
+      "options": ["Streaming", "Downloading", "Broadcasting"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to read news online?",
+      "options": ["Website", "Newspaper", "Magazine"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to get directions?",
+      "options": ["Map App", "Compass", "Atlas"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to shop online?",
+      "options": ["E-commerce", "Mall", "Market"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to learn online?",
+      "options": ["E-learning", "School", "Library"],
+      "correct": 0
+    }
+  ],
+  "medium": [
+    {
+      "question": "What is the powerhouse of the cell?",
+      "options": ["Nucleus", "Ribosome", "Mitochondrion"],
+      "correct": 2
+    },
+    {
+      "question": "What does DNA stand for?",
+      "options": ["Deoxyribonucleic Acid", "Neuro-Acid", "Nucleic Alloy"],
+      "correct": 0
+    },
+    {
+      "question": "What is the hardest natural substance?",
+      "options": ["Gold", "Diamond", "Iron"],
+      "correct": 1
+    },
+    {
+      "question": "What process do plants use to make food?",
+      "options": ["Respiration", "Photosynthesis", "Digestion"],
+      "correct": 1
+    },
+    {
+      "question": "What is the chemical symbol for table salt?",
+      "options": ["H₂O", "CO₂", "NaCl"],
+      "correct": 2
+    },
+    {
+      "question": "Which mammal can fly?",
+      "options": ["Bat", "Ostrich", "Penguin"],
+      "correct": 0
+    },
+    {
+      "question": "What is the study of fossils called?",
+      "options": ["Biology", "Geology", "Paleontology"],
+      "correct": 2
+    },
+    {
+      "question": "What is the molecule for ozone?",
+      "options": ["O₂", "O₃", "H₂O"],
+      "correct": 1
+    },
+    {
+      "question": "What gives blood its red color?",
+      "options": ["Plasma", "Hemoglobin", "Platelets"],
+      "correct": 1
+    },
+    {
+      "question": "What is the largest organ in the human body?",
+      "options": ["Liver", "Brain", "Skin"],
+      "correct": 2
+    },
+    {
+      "question": "What is the chemical symbol for Iron?",
+      "options": ["Ir", "Fe", "In"],
+      "correct": 1
+    },
+    {
+      "question": "What type of acid is in your stomach?",
+      "options": ["Sulfuric", "Hydrochloric", "Acetic"],
+      "correct": 1
+    },
+    {
+      "question": "How many bones are in the adult human body?",
+      "options": ["206", "256", "306"],
+      "correct": 0
+    },
+    {
+      "question": "What is the name for the 'voice box'?",
+      "options": ["Pharynx", "Larynx", "Trachea"],
+      "correct": 1
+    },
+    {
+      "question": "Which gas is most abundant in Earth's atmosphere?",
+      "options": ["Oxygen", "Nitrogen", "Argon"],
+      "correct": 1
+    },
+    {
+      "question": "What is the main sugar found in fruit?",
+      "options": ["Glucose", "Sucrose", "Fructose"],
+      "correct": 2
+    },
+    {
+      "question": "What is the scientific study of plants?",
+      "options": ["Zoology", "Botany", "Mycology"],
+      "correct": 1
+    },
+    {
+      "question": "Which part of the brain controls balance?",
+      "options": ["Cerebrum", "Cerebellum", "Brainstem"],
+      "correct": 1
+    },
+    {
+      "question": "What are the building blocks of proteins?",
+      "options": ["Sugars", "Fatty Acids", "Amino Acids"],
+      "correct": 2
+    },
+    {
+      "question": "Which element is essential for bone health?",
+      "options": ["Iron", "Calcium", "Potassium"],
+      "correct": 1
+    },
+    {
+      "question": "What is the process of cell division called?",
+      "options": ["Meiosis", "Mitosis", "Metabolism"],
+      "correct": 1
+    },
+    {
+      "question": "What is the study of fungi called?",
+      "options": ["Botany", "Mycology", "Virology"],
+      "correct": 1
+    },
+    {
+      "question": "What is the pigment that gives plants their green color?",
+      "options": ["Chlorophyll", "Melanin", "Carotene"],
+      "correct": 0
+    },
+    {
+      "question": "What is the smallest bone in the human body?",
+      "options": ["Femur", "Stapes", "Phalange"],
+      "correct": 1
+    },
+    {
+      "question": "Which vitamin is known as the 'sunshine vitamin'?",
+      "options": ["Vitamin A", "Vitamin C", "Vitamin D"],
+      "correct": 2
+    },
+    {
+      "question": "What are tiny blood vessels called?",
+      "options": ["Arteries", "Veins", "Capillaries"],
+      "correct": 2
+    },
+    {
+      "question": "What is the scientific name for humans?",
+      "options": ["Homo erectus", "Homo sapiens", "Homo habilis"],
+      "correct": 1
+    },
+    {
+      "question": "Which organ produces insulin?",
+      "options": ["Liver", "Pancreas", "Kidney"],
+      "correct": 1
+    },
+    {
+      "question": "What is the process of liquid turning into gas?",
+      "options": ["Condensation", "Evaporation", "Sublimation"],
+      "correct": 1
+    },
+    {
+      "question": "Which blood type is the universal donor?",
+      "options": ["AB+", "O-", "A+"],
+      "correct": 1
+    },
+    {
+      "question": "What is the tough, flexible tissue in your nose and ears?",
+      "options": ["Bone", "Cartilage", "Tendon"],
+      "correct": 1
+    },
+    {
+      "question": "What is the study of insects called?",
+      "options": ["Ornithology", "Entomology", "Herpetology"],
+      "correct": 1
+    },
+    {
+      "question": "Which chemical element is a noble gas?",
+      "options": ["Oxygen", "Helium", "Hydrogen"],
+      "correct": 1
+    },
+    {
+      "question": "What is the common name for Canis lupus?",
+      "options": ["Dog", "Wolf", "Fox"],
+      "correct": 1
+    },
+    {
+      "question": "What is the body's largest artery?",
+      "options": ["Aorta", "Femoral", "Carotid"],
+      "correct": 0
+    },
+    {
+      "question": "What do you call an animal with a backbone?",
+      "options": ["Invertebrate", "Vertebrate", "Arthropod"],
+      "correct": 1
+    },
+    {
+      "question": "Which layer of the Earth do we live on?",
+      "options": ["Mantle", "Core", "Crust"],
+      "correct": 2
+    },
+    {
+      "question": "What is the process of breaking down food called?",
+      "options": ["Circulation", "Respiration", "Digestion"],
+      "correct": 2
+    },
+    {
+      "question": "What are organisms that make their own food?",
+      "options": ["Consumers", "Producers", "Decomposers"],
+      "correct": 1
+    },
+    {
+      "question": "What is the main function of the kidneys?",
+      "options": ["Filter blood", "Pump blood", "Digest food"],
+      "correct": 0
+    },
+    {
+      "question": "What is the pH of a neutral substance?",
+      "options": ["Below 7", "7", "Above 7"],
+      "correct": 1
+    },
+    {
+      "question": "Which part of the cell contains the genetic material?",
+      "options": ["Cytoplasm", "Nucleus", "Membrane"],
+      "correct": 1
+    },
+    {
+      "question": "What is the study of birds called?",
+      "options": ["Ichthyology", "Ornithology", "Mammalogy"],
+      "correct": 1
+    },
+    {
+      "question": "Which metal is liquid at room temperature?",
+      "options": ["Gallium", "Mercury", "Bromine"],
+      "correct": 1
+    },
+    {
+      "question": "What is the main component of natural gas?",
+      "options": ["Propane", "Butane", "Methane"],
+      "correct": 2
+    },
+    {
+      "question": "What type of sugar is produced during photosynthesis?",
+      "options": ["Fructose", "Glucose", "Sucrose"],
+      "correct": 1
+    },
+    {
+      "question": "What are the two main types of lenses?",
+      "options": [
+        "Convex & Concave",
+        "Reflective & Refractive",
+        "Simple & Complex"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the change of a solid directly to a gas?",
+      "options": ["Melting", "Sublimation", "Deposition"],
+      "correct": 1
+    },
+    {
+      "question": "Which element is found in all organic compounds?",
+      "options": ["Nitrogen", "Oxygen", "Carbon"],
+      "correct": 2
+    },
+    {
+      "question": "What is the name for the kneecap bone?",
+      "options": ["Tibia", "Fibula", "Patella"],
+      "correct": 2
+    },
+    {
+      "question": "What force pulls objects to Earth?",
+      "options": ["Magnetism", "Gravity", "Friction"],
+      "correct": 1
+    },
+    {
+      "question": "What is the largest planet in our solar system?",
+      "options": ["Earth", "Saturn", "Jupiter"],
+      "correct": 2
+    },
+    {
+      "question": "What unit measures electrical resistance?",
+      "options": ["Volt", "Ampere", "Ohm"],
+      "correct": 2
+    },
+    {
+      "question": "What is the natural satellite of Earth?",
+      "options": ["Sun", "Moon", "Mars"],
+      "correct": 1
+    },
+    {
+      "question": "What is the formula for water?",
+      "options": ["H₂O₂", "CO₂", "H₂O"],
+      "correct": 2
+    },
+    {
+      "question": "Energy of motion is called what?",
+      "options": ["Potential", "Kinetic", "Chemical"],
+      "correct": 1
+    },
+    {
+      "question": "What is the path of a planet around the sun?",
+      "options": ["Orbit", "Rotation", "Axis"],
+      "correct": 0
+    },
+    {
+      "question": "What is the unit of power?",
+      "options": ["Joule", "Watt", "Newton"],
+      "correct": 1
+    },
+    {
+      "question": "What is the center of an atom called?",
+      "options": ["Electron", "Proton", "Nucleus"],
+      "correct": 2
+    },
+    {
+      "question": "What is a celestial body that emits light?",
+      "options": ["Planet", "Star", "Moon"],
+      "correct": 1
+    },
+    {
+      "question": "What is the SI unit of force?",
+      "options": ["Pascal", "Newton", "Watt"],
+      "correct": 1
+    },
+    {
+      "question": "What type of energy does the sun provide?",
+      "options": ["Geothermal", "Nuclear", "Solar"],
+      "correct": 2
+    },
+    {
+      "question": "What is the name of our galaxy?",
+      "options": ["Andromeda", "Milky Way", "Triangulum"],
+      "correct": 1
+    },
+    {
+      "question": "What is the particle with a positive charge in an atom?",
+      "options": ["Electron", "Neutron", "Proton"],
+      "correct": 2
+    },
+    {
+      "question": "What is the measure of the amount of matter in an object?",
+      "options": ["Weight", "Mass", "Volume"],
+      "correct": 1
+    },
+    {
+      "question": "Which planet is known for its rings?",
+      "options": ["Jupiter", "Saturn", "Uranus"],
+      "correct": 1
+    },
+    {
+      "question": "What is the bending of light called?",
+      "options": ["Reflection", "Refraction", "Diffraction"],
+      "correct": 1
+    },
+    {
+      "question": "What is the unit of electric current?",
+      "options": ["Ohm", "Volt", "Ampere"],
+      "correct": 2
+    },
+    {
+      "question": "What is the spinning of a planet on its axis called?",
+      "options": ["Orbit", "Rotation", "Revolution"],
+      "correct": 1
+    },
+    {
+      "question": "What are the three states of matter?",
+      "options": [
+        "Solid, Liquid, Gas",
+        "Hard, Soft, Spongy",
+        "Hot, Cold, Warm"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "Which simple machine is a ramp?",
+      "options": ["Lever", "Inclined Plane", "Pulley"],
+      "correct": 1
+    },
+    {
+      "question": "What is the term for a space rock that hits Earth?",
+      "options": ["Meteor", "Meteoroid", "Meteorite"],
+      "correct": 2
+    },
+    {
+      "question": "What is the color of light with the longest wavelength?",
+      "options": ["Blue", "Green", "Red"],
+      "correct": 2
+    },
+    {
+      "question": "What is the particle with a negative charge in an atom?",
+      "options": ["Proton", "Electron", "Neutron"],
+      "correct": 1
+    },
+    {
+      "question": "What is the closest planet to the Sun?",
+      "options": ["Venus", "Mars", "Mercury"],
+      "correct": 2
+    },
+    {
+      "question": "What is the SI unit of energy?",
+      "options": ["Joule", "Watt", "Hertz"],
+      "correct": 0
+    },
+    {
+      "question": "What is the force that opposes motion?",
+      "options": ["Gravity", "Inertia", "Friction"],
+      "correct": 2
+    },
+    {
+      "question": "What is a group of stars forming a pattern?",
+      "options": ["Galaxy", "Constellation", "Nebula"],
+      "correct": 1
+    },
+    {
+      "question": "What is the study of the universe called?",
+      "options": ["Astrology", "Cosmology", "Geology"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What device converts electrical energy to mechanical energy?",
+      "options": ["Generator", "Motor", "Battery"],
+      "correct": 1
+    },
+    {
+      "question":
+          "Which law states that for every action there is an equal and opposite reaction?",
+      "options": ["Newton's First", "Newton's Second", "Newton's Third"],
+      "correct": 2
+    },
+    {
+      "question": "What is a large cloud of gas and dust in space?",
+      "options": ["Asteroid", "Comet", "Nebula"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the resistance of an object to a change in its state of motion?",
+      "options": ["Momentum", "Inertia", "Velocity"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a giant wave caused by an earthquake?",
+      "options": ["Hurricane", "Tsunami", "Tornado"],
+      "correct": 1
+    },
+    {
+      "question": "What is the rate of change of velocity?",
+      "options": ["Speed", "Acceleration", "Displacement"],
+      "correct": 1
+    },
+    {
+      "question": "Which planet is the eighth from the sun?",
+      "options": ["Uranus", "Neptune", "Saturn"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What form of heat transfer occurs through electromagnetic waves?",
+      "options": ["Conduction", "Convection", "Radiation"],
+      "correct": 2
+    },
+    {
+      "question": "What is the bouncing of light off a surface called?",
+      "options": ["Refraction", "Reflection", "Absorption"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name of the North Star?",
+      "options": ["Sirius", "Betelgeuse", "Polaris"],
+      "correct": 2
+    },
+    {
+      "question": "What is the speed of sound in air (approx)?",
+      "options": ["343 m/s", "1000 m/s", "100 m/s"],
+      "correct": 0
+    },
+    {
+      "question": "What is a year with an extra day called?",
+      "options": ["Leap Year", "Long Year", "Solar Year"],
+      "correct": 0
+    },
+    {
+      "question": "What kind of energy is stored in a battery?",
+      "options": ["Kinetic", "Potential", "Chemical"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the name for the imaginary line through the center of the Earth?",
+      "options": ["Equator", "Axis", "Meridian"],
+      "correct": 1
+    },
+    {
+      "question": "What is a measure of how much space an object takes up?",
+      "options": ["Mass", "Density", "Volume"],
+      "correct": 2
+    },
+    {
+      "question": "What is the closest star to Earth?",
+      "options": ["Alpha Centauri", "Proxima Centauri", "The Sun"],
+      "correct": 2
+    },
+    {
+      "question": "What is the primary function of a lens?",
+      "options": ["Reflect light", "Focus light", "Block light"],
+      "correct": 1
+    },
+    {
+      "question": "What is the outermost layer of the Sun's atmosphere?",
+      "options": ["Photosphere", "Chromosphere", "Corona"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the phenomenon of a wave bending around an obstacle?",
+      "options": ["Interference", "Diffraction", "Refraction"],
+      "correct": 1
+    },
+    {
+      "question": "What is the unit of frequency?",
+      "options": ["Hertz", "Decibel", "Lumen"],
+      "correct": 0
+    },
+    {
+      "question": "What is a device that stores electrical charge?",
+      "options": ["Resistor", "Capacitor", "Inductor"],
+      "correct": 1
+    },
+    {
+      "question": "What does a computer use to process data?",
+      "options": ["Monitor", "CPU", "Mouse"],
+      "correct": 1
+    },
+    {
+      "question": "What is the value of Pi (approx)?",
+      "options": ["2.14", "3.14", "4.14"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'URL' stand for?",
+      "options": [
+        "Uniform Resource Locator",
+        "Universal Resource Link",
+        "Uniform Record Locator"
+      ],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the term for a software program that replicates itself?",
+      "options": ["Bug", "Virus", "Glitch"],
+      "correct": 1
+    },
+    {
+      "question": "What is the area of a square with side length 5?",
+      "options": ["20", "25", "30"],
+      "correct": 1
+    },
+    {
+      "question": "What does RAM stand for?",
+      "options": [
+        "Read Access Memory",
+        "Random Access Memory",
+        "Run Access Memory"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is a number that can only be divided by 1 and itself?",
+      "options": ["Even", "Odd", "Prime"],
+      "correct": 2
+    },
+    {
+      "question": "What does 'HTTP' stand for?",
+      "options": [
+        "HyperText Transfer Protocol",
+        "HyperText Transmission Protocol",
+        "HyperText Text Protocol"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is a line that touches a circle at only one point?",
+      "options": ["Chord", "Secant", "Tangent"],
+      "correct": 2
+    },
+    {
+      "question": "What is the main circuit board in a computer?",
+      "options": ["CPU", "Motherboard", "GPU"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is a flat, two-dimensional shape with four equal straight sides and four right angles?",
+      "options": ["Rectangle", "Square", "Rhombus"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common programming language for web development?",
+      "options": ["C++", "Python", "JavaScript"],
+      "correct": 2
+    },
+    {
+      "question": "What is the perimeter of a rectangle with sides 4 and 6?",
+      "options": ["10", "20", "24"],
+      "correct": 1
+    },
+    {
+      "question": "What is a global network of computers?",
+      "options": ["Intranet", "Internet", "Extranet"],
+      "correct": 1
+    },
+    {
+      "question": "What is any number to the power of 0?",
+      "options": ["0", "1", "Itself"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'GUI' stand for?",
+      "options": [
+        "Graphical User Interface",
+        "General User Interface",
+        "Global User Interface"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the name for a 90-degree angle?",
+      "options": ["Acute", "Obtuse", "Right"],
+      "correct": 2
+    },
+    {
+      "question": "What is a single binary digit (0 or 1) called?",
+      "options": ["Byte", "Bit", "Nibble"],
+      "correct": 1
+    },
+    {
+      "question": "What is the study of shapes and spaces?",
+      "options": ["Algebra", "Calculus", "Geometry"],
+      "correct": 2
+    },
+    {
+      "question": "What does 'PDF' stand for?",
+      "options": [
+        "Portable Document Format",
+        "Printable Document File",
+        "Personal Document Format"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the square root of 64?",
+      "options": ["7", "8", "9"],
+      "correct": 1
+    },
+    {
+      "question": "What is the code that builds the structure of a webpage?",
+      "options": ["CSS", "HTML", "JavaScript"],
+      "correct": 1
+    },
+    {
+      "question": "What is a three-dimensional figure with six square faces?",
+      "options": ["Sphere", "Cube", "Cylinder"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common database language?",
+      "options": ["SQL", "HTML", "CSS"],
+      "correct": 0
+    },
+    {
+      "question": "What is the Roman numeral for 10?",
+      "options": ["V", "X", "L"],
+      "correct": 1
+    },
+    {
+      "question": "What is a set of rules for a computer to follow?",
+      "options": ["Algorithm", "Heuristic", "Protocol"],
+      "correct": 0
+    },
+    {
+      "question": "What is the longest side of a right-angled triangle?",
+      "options": ["Adjacent", "Opposite", "Hypotenuse"],
+      "correct": 2
+    },
+    {
+      "question": "What is a common format for compressing files?",
+      "options": ["ZIP", "JPG", "MP3"],
+      "correct": 0
+    },
+    {
+      "question": "What is the result of 7 squared?",
+      "options": ["14", "49", "77"],
+      "correct": 1
+    },
+    {
+      "question": "What is the term for unwanted email?",
+      "options": ["Spam", "Phishing", "Adware"],
+      "correct": 0
+    },
+    {
+      "question": "What is the next prime number after 7?",
+      "options": ["9", "10", "11"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is a common wireless technology for short-range communication?",
+      "options": ["Wi-Fi", "Bluetooth", "NFC"],
+      "correct": 1
+    },
+    {
+      "question": "What is the circumference of a circle?",
+      "options": ["πr²", "2πr", "πd²"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is a piece of software that adds functionality to another program?",
+      "options": ["Plugin", "Driver", "Firmware"],
+      "correct": 0
+    },
+    {
+      "question": "What is the formula a² + b² = c² known as?",
+      "options": [
+        "Euclidean Theorem",
+        "Pythagorean Theorem",
+        "Fibonacci Sequence"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is the term for a website's unique address?",
+      "options": ["IP Address", "Domain Name", "URL"],
+      "correct": 1
+    },
+    {
+      "question": "What is the term for a visual representation of data?",
+      "options": ["Chart", "Graph", "Table"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common operating system for PCs?",
+      "options": ["iOS", "Android", "Windows"],
+      "correct": 2
+    },
+    {
+      "question": "What is the average of 2, 4, and 6?",
+      "options": ["3", "4", "5"],
+      "correct": 1
+    },
+    {
+      "question": "What is a software application for a mobile device?",
+      "options": ["App", "Program", "Widget"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the mathematical constant 'e' approximately equal to?",
+      "options": ["1.618", "2.718", "3.141"],
+      "correct": 1
+    },
+    {
+      "question": "What is the process of finding errors in code called?",
+      "options": ["Compiling", "Debugging", "Executing"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is a quadrilateral with only one pair of parallel sides?",
+      "options": ["Rhombus", "Trapezoid", "Kite"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the physical components of a computer system?",
+      "options": ["Software", "Hardware", "Firmware"],
+      "correct": 1
+    },
+    {
+      "question": "What is the area of a triangle with base 10 and height 5?",
+      "options": ["25", "50", "15"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is a type of malicious software that encrypts files and demands a ransom?",
+      "options": ["Spyware", "Adware", "Ransomware"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is a sequence where each number is the sum of the two preceding ones?",
+      "options": ["Arithmetic", "Geometric", "Fibonacci"],
+      "correct": 2
+    },
+    {
+      "question": "What is a common way to measure internet speed?",
+      "options": ["Gbps", "Mbps", "Kbps"],
+      "correct": 1
+    },
+    {
+      "question": "What is a polygon with five sides?",
+      "options": ["Hexagon", "Pentagon", "Octagon"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'OS' stand for?",
+      "options": ["Operating System", "Open Source", "Optical Sensor"],
+      "correct": 0
+    }
+  ],
+  "hard": [
+    {
+      "question": "What is the chemical symbol for Gold?",
+      "options": ["Ag", "Au", "Go"],
+      "correct": 1
+    },
+    {
+      "question": "What is the process of splitting atoms called?",
+      "options": ["Fusion", "Fission", "Oxidation"],
+      "correct": 1
+    },
+    {
+      "question": "What is the most electronegative element?",
+      "options": ["Fluorine", "Chlorine", "Oxygen"],
+      "correct": 0
+    },
+    {
+      "question": "What is the study of the structure of body parts?",
+      "options": ["Physiology", "Anatomy", "Histology"],
+      "correct": 1
+    },
+    {
+      "question": "What are the four main bases in DNA?",
+      "options": ["A, G, C, U", "A, G, C, T", "A, T, C, U"],
+      "correct": 1
+    },
+    {
+      "question": "What is the term for programmed cell death?",
+      "options": ["Necrosis", "Apoptosis", "Autophagy"],
+      "correct": 1
+    },
+    {
+      "question": "What type of bond involves the sharing of electron pairs?",
+      "options": ["Ionic", "Covalent", "Metallic"],
+      "correct": 1
+    },
+    {
+      "question": "What is the universal energy currency of the cell?",
+      "options": ["NADPH", "GTP", "ATP"],
+      "correct": 2
+    },
+    {
+      "question": "Which organelle is responsible for protein synthesis?",
+      "options": ["Golgi", "Ribosome", "Lysosome"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a substance that speeds up a chemical reaction?",
+      "options": ["Inhibitor", "Catalyst", "Reactant"],
+      "correct": 1
+    },
+    {
+      "question": "What is the study of tissues?",
+      "options": ["Cytology", "Histology", "Embryology"],
+      "correct": 1
+    },
+    {
+      "question":
+          "Which law of thermodynamics states that entropy always increases?",
+      "options": ["First", "Second", "Third"],
+      "correct": 1
+    },
+    {
+      "question": "What is the process of converting RNA into protein?",
+      "options": ["Transcription", "Translation", "Replication"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a positively charged ion?",
+      "options": ["Anion", "Cation", "Zwitterion"],
+      "correct": 1
+    },
+    {
+      "question":
+          "Which part of the nervous system controls involuntary actions?",
+      "options": ["Somatic", "Autonomic", "Central"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the protein that carries oxygen in muscles?",
+      "options": ["Hemoglobin", "Myoglobin", "Actin"],
+      "correct": 1
+    },
+    {
+      "question": "What is a solution with a pH less than 7?",
+      "options": ["Basic", "Neutral", "Acidic"],
+      "correct": 2
+    },
+    {
+      "question": "What are the two components of the central nervous system?",
+      "options": ["Brain & Nerves", "Brain & Spinal Cord", "Nerves & Ganglia"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a reaction that releases heat?",
+      "options": ["Endothermic", "Exothermic", "Isothermic"],
+      "correct": 1
+    },
+    {
+      "question": "What is the study of poisons?",
+      "options": ["Pharmacology", "Toxicology", "Pathology"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the 'master gland' of the endocrine system?",
+      "options": ["Thyroid", "Adrenal", "Pituitary"],
+      "correct": 2
+    },
+    {
+      "question": "Which class of organic molecules includes fats and oils?",
+      "options": ["Carbohydrates", "Proteins", "Lipids"],
+      "correct": 2
+    },
+    {
+      "question": "What is the process of making a copy of DNA?",
+      "options": ["Translation", "Replication", "Transcription"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the term for an organism that lives on or in another organism and benefits by deriving nutrients at the host's expense?",
+      "options": ["Parasite", "Commensal", "Mutualist"],
+      "correct": 0
+    },
+    {
+      "question": "What is the name for the junction between two neurons?",
+      "options": ["Axon", "Dendrite", "Synapse"],
+      "correct": 2
+    },
+    {
+      "question": "What is Avogadro's number (approx)?",
+      "options": ["6.022 x 10²³", "3.141 x 10²³", "9.81 x 10²³"],
+      "correct": 0
+    },
+    {
+      "question":
+          "Which type of RNA carries the genetic code from the nucleus to the ribosome?",
+      "options": ["tRNA", "rRNA", "mRNA"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the name for a molecule that is a mirror image of another?",
+      "options": ["Isomer", "Isotope", "Enantiomer"],
+      "correct": 2
+    },
+    {
+      "question": "Which kingdom do mushrooms belong to?",
+      "options": ["Plantae", "Animalia", "Fungi"],
+      "correct": 2
+    },
+    {
+      "question": "What is the name for the liquid part of blood?",
+      "options": ["Serum", "Plasma", "Lymph"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a hydrocarbon with only single bonds?",
+      "options": ["Alkene", "Alkyne", "Alkane"],
+      "correct": 2
+    },
+    {
+      "question": "What is the study of the functions of living organisms?",
+      "options": ["Anatomy", "Physiology", "Ecology"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a protein that acts as a biological catalyst?",
+      "options": ["Enzyme", "Hormone", "Antibody"],
+      "correct": 0
+    },
+    {
+      "question": "Which of the following is a monosaccharide?",
+      "options": ["Sucrose", "Lactose", "Glucose"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the process of a plant losing water through its leaves?",
+      "options": ["Perspiration", "Transpiration", "Respiration"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for the chromosomes that determine sex?",
+      "options": ["Autosomes", "Allosomes", "Centromeres"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a substance that can donate a proton?",
+      "options": ["Brønsted-Lowry Acid", "Brønsted-Lowry Base", "Lewis Acid"],
+      "correct": 0
+    },
+    {
+      "question": "Which blood cells are responsible for fighting infection?",
+      "options": ["Erythrocytes", "Leukocytes", "Thrombocytes"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a single unit of a polymer?",
+      "options": ["Monomer", "Dimer", "Trimer"],
+      "correct": 0
+    },
+    {
+      "question":
+          "Which of the following is a component of the cell wall in plants?",
+      "options": ["Chitin", "Peptidoglycan", "Cellulose"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the term for the maintenance of a stable internal environment?",
+      "options": ["Metabolism", "Homeostasis", "Catabolism"],
+      "correct": 1
+    },
+    {
+      "question":
+          "Which type of chemical bond is formed by the transfer of electrons?",
+      "options": ["Covalent", "Ionic", "Metallic"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the study of the relationships between organisms and their environment?",
+      "options": ["Ethology", "Ecology", "Evolution"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the part of an enzyme where the substrate binds?",
+      "options": ["Active Site", "Allosteric Site", "Binding Pocket"],
+      "correct": 0
+    },
+    {
+      "question": "Which vitamin is essential for blood clotting?",
+      "options": ["Vitamin C", "Vitamin K", "Vitamin A"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the process of converting sunlight into chemical energy?",
+      "options": ["Chemosynthesis", "Photosynthesis", "Glycolysis"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a particle with no electric charge in the nucleus?",
+      "options": ["Proton", "Electron", "Neutron"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the name for a group of similar cells performing a specific function?",
+      "options": ["Organ", "Tissue", "System"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for the genetic makeup of an organism?",
+      "options": ["Phenotype", "Genotype", "Karyotype"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a reaction that absorbs heat?",
+      "options": ["Exothermic", "Endothermic", "Isothermic"],
+      "correct": 1
+    },
+    {
+      "question": "What is the formula for Force?",
+      "options": ["E=mc²", "F=ma", "a²+b²=c²"],
+      "correct": 1
+    },
+    {
+      "question": "What is the speed of light (approx)?",
+      "options": ["3.00 x 10⁸ m/s", "1.50 x 10⁸ m/s", "5.00 x 10⁸ m/s"],
+      "correct": 0
+    },
+    {
+      "question": "Who developed the theory of relativity?",
+      "options": ["Newton", "Einstein", "Galileo"],
+      "correct": 1
+    },
+    {
+      "question": "What is the SI unit of frequency?",
+      "options": ["Hertz", "Watt", "Joule"],
+      "correct": 0
+    },
+    {
+      "question": "What is the name for a particle of light?",
+      "options": ["Electron", "Photon", "Quark"],
+      "correct": 1
+    },
+    {
+      "question": "What is the point in a planet's orbit closest to the sun?",
+      "options": ["Aphelion", "Perihelion", "Apogee"],
+      "correct": 1
+    },
+    {
+      "question": "What does a Geiger counter measure?",
+      "options": ["Radiation", "Pressure", "Temperature"],
+      "correct": 0
+    },
+    {
+      "question": "What is the name for the explosive death of a massive star?",
+      "options": ["Nova", "Supernova", "Hypernova"],
+      "correct": 1
+    },
+    {
+      "question": "What is the Heisenberg Uncertainty Principle related to?",
+      "options": ["Position & Momentum", "Energy & Time", "Both"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the name for a hypothetical region of spacetime from which nothing can escape?",
+      "options": ["Wormhole", "Black Hole", "White Hole"],
+      "correct": 1
+    },
+    {
+      "question": "What is the SI unit of magnetic flux density?",
+      "options": ["Weber", "Tesla", "Henry"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the temperature at which all molecular motion ceases?",
+      "options": ["Absolute Zero", "Freezing Point", "Triple Point"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the process of combining light atomic nuclei to form heavier nuclei?",
+      "options": ["Fission", "Fusion", "Decay"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a subatomic particle with no charge and very little mass?",
+      "options": ["Neutron", "Neutrino", "Muon"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What law describes the relationship between the pressure and volume of a gas?",
+      "options": ["Charles's Law", "Boyle's Law", "Gay-Lussac's Law"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the apparent change in the frequency of a wave in relation to an observer who is moving relative to the wave source?",
+      "options": ["Doppler Effect", "Photoelectric Effect", "Compton Effect"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the name for a material that has zero electrical resistance?",
+      "options": ["Conductor", "Insulator", "Superconductor"],
+      "correct": 2
+    },
+    {
+      "question": "What is the escape velocity of Earth (approx)?",
+      "options": ["8.2 km/s", "11.2 km/s", "14.2 km/s"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for the study of the properties of light?",
+      "options": ["Acoustics", "Optics", "Thermodynamics"],
+      "correct": 1
+    },
+    {
+      "question": "What is the antiparticle of an electron?",
+      "options": ["Proton", "Positron", "Neutrino"],
+      "correct": 1
+    },
+    {
+      "question": "Which of the four fundamental forces is the weakest?",
+      "options": ["Electromagnetic", "Gravitational", "Strong Nuclear"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the time it takes for half of the radioactive atoms in a sample to decay?",
+      "options": ["Half-life", "Decay Constant", "Activity"],
+      "correct": 0
+    },
+    {
+      "question": "What type of lens is thicker in the middle?",
+      "options": ["Concave", "Convex", "Plano"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for the measure of disorder in a system?",
+      "options": ["Enthalpy", "Entropy", "Gibbs Free Energy"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a celestial object composed of a nucleus of ice and dust and, when near the sun, a 'tail' of gas and dust particles pointing away from the sun?",
+      "options": ["Asteroid", "Comet", "Meteor"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the law that relates current, voltage, and resistance?",
+      "options": ["Faraday's Law", "Ohm's Law", "Kirchhoff's Law"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the transfer of heat by the movement of a fluid?",
+      "options": ["Conduction", "Convection", "Radiation"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a stable subatomic particle with a negative electric charge?",
+      "options": ["Proton", "Electron", "Neutron"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the branch of physics that deals with the motion of bodies under the action of forces?",
+      "options": ["Mechanics", "Kinetics", "Dynamics"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the name of the theory that describes the beginning of the universe?",
+      "options": ["Steady State", "Big Bang", "Inflation"],
+      "correct": 1
+    },
+    {
+      "question": "What is the SI unit of pressure?",
+      "options": ["Newton", "Pascal", "Joule"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the force that holds the nucleus of an atom together?",
+      "options": ["Electromagnetic", "Gravitational", "Strong Nuclear"],
+      "correct": 2
+    },
+    {
+      "question": "What is the name for the largest moon of Saturn?",
+      "options": ["Europa", "Titan", "Ganymede"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the principle that a body immersed in a fluid is buoyed up by a force equal to the weight of the displaced fluid?",
+      "options": [
+        "Pascal's Principle",
+        "Archimedes' Principle",
+        "Bernoulli's Principle"
+      ],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a wave in which the vibration is in the same direction as that in which the wave is traveling?",
+      "options": ["Transverse", "Longitudinal", "Surface"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a quantity that has both magnitude and direction?",
+      "options": ["Scalar", "Vector", "Tensor"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for the dark patches on the sun's surface?",
+      "options": ["Flares", "Prominences", "Sunspots"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the phenomenon where light is split into its constituent colors?",
+      "options": ["Dispersion", "Diffraction", "Interference"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the name for the energy an object possesses due to its position?",
+      "options": ["Kinetic", "Potential", "Mechanical"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the point in the moon's orbit where it is farthest from Earth?",
+      "options": ["Perigee", "Apogee", "Perihelion"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the conservation law that states that the total electric charge in an isolated system never changes?",
+      "options": [
+        "Charge Conservation",
+        "Energy Conservation",
+        "Momentum Conservation"
+      ],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the name for a particle that mediates one of the fundamental forces?",
+      "options": ["Fermion", "Boson", "Hadron"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for the theoretical boundary around a black hole beyond which no light can escape?",
+      "options": ["Event Horizon", "Singularity", "Accretion Disk"],
+      "correct": 0
+    },
+    {
+      "question": "What is the study of sound?",
+      "options": ["Optics", "Acoustics", "Kinematics"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a type of quark?",
+      "options": ["Up", "Lepton", "Boson"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the name for a substance that can flow and has no fixed shape?",
+      "options": ["Solid", "Fluid", "Plasma"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for the unit of luminous intensity?",
+      "options": ["Lumen", "Lux", "Candela"],
+      "correct": 2
+    },
+    {
+      "question": "What is the name for the first artificial Earth satellite?",
+      "options": ["Sputnik 1", "Explorer 1", "Vanguard 1"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the name for the theory that space and time are intertwined?",
+      "options": [
+        "General Relativity",
+        "Special Relativity",
+        "Quantum Mechanics"
+      ],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a device that measures atmospheric pressure?",
+      "options": ["Thermometer", "Barometer", "Anemometer"],
+      "correct": 1
+    },
+    {
+      "question": "What is the imaginary unit 'i' equal to?",
+      "options": ["sqrt(1)", "sqrt(-1)", "sqrt(0)"],
+      "correct": 1
+    },
+    {
+      "question": "What does the 'chmod' command do in Unix/Linux?",
+      "options": ["Change Mode", "Change Module", "Check Mode"],
+      "correct": 0
+    },
+    {
+      "question": "What is the derivative of x²?",
+      "options": ["x", "2x", "x³/3"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the name for a data structure that follows a Last-In, First-Out (LIFO) principle?",
+      "options": ["Queue", "Stack", "Heap"],
+      "correct": 1
+    },
+    {
+      "question": "What is the value of Euler's number 'e' (approx)?",
+      "options": ["3.141", "1.618", "2.718"],
+      "correct": 2
+    },
+    {
+      "question": "What does 'API' stand for?",
+      "options": [
+        "Application Programming Interface",
+        "Advanced Program Integration",
+        "Application Protocol Interface"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the integral of 2x dx?",
+      "options": ["x² + C", "2 + C", "x + C"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common version control system used by developers?",
+      "options": ["FTP", "Git", "SSH"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is a mathematical statement that is assumed to be true without proof?",
+      "options": ["Theorem", "Axiom", "Lemma"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'SaaS' stand for?",
+      "options": [
+        "Software as a Service",
+        "System as a Service",
+        "Security as a Service"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is a number system with a base of 2?",
+      "options": ["Decimal", "Hexadecimal", "Binary"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is the name for a language that is compiled to machine code before execution?",
+      "options": ["Interpreted", "Compiled", "Scripting"],
+      "correct": 1
+    },
+    {
+      "question": "What is the name for a matrix that is its own inverse?",
+      "options": ["Identity", "Involutory", "Orthogonal"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'DNS' stand for?",
+      "options": [
+        "Domain Name System",
+        "Data Naming Service",
+        "Digital Network Service"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is the limit of (1/x) as x approaches infinity?",
+      "options": ["Infinity", "1", "0"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is a common framework for building user interfaces in JavaScript?",
+      "options": ["Django", "React", "Laravel"],
+      "correct": 1
+    },
+    {
+      "question": "What is a complex number?",
+      "options": [
+        "Real + Imaginary",
+        "Integer + Fraction",
+        "Rational + Irrational"
+      ],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is a method for sorting data in O(n log n) time complexity?",
+      "options": ["Bubble Sort", "Merge Sort", "Insertion Sort"],
+      "correct": 1
+    },
+    {
+      "question": "What is the factorial of 5 (5!)?",
+      "options": ["25", "60", "120"],
+      "correct": 2
+    },
+    {
+      "question": "What does 'JSON' stand for?",
+      "options": [
+        "Java Standard Object Notation",
+        "JavaScript Object Notation",
+        "Java Serialized Object Naming"
+      ],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is a field of mathematics that studies continuous change?",
+      "options": ["Algebra", "Geometry", "Calculus"],
+      "correct": 2
+    },
+    {
+      "question": "What is a common protocol for sending email?",
+      "options": ["FTP", "SMTP", "HTTP"],
+      "correct": 1
+    },
+    {
+      "question": "What is the golden ratio (φ) approximately equal to?",
+      "options": ["1.618", "2.718", "3.141"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the name for a programming paradigm based on the concept of 'objects'?",
+      "options": ["Functional", "Procedural", "Object-Oriented"],
+      "correct": 2
+    },
+    {
+      "question": "What is a logarithm?",
+      "options": [
+        "Inverse of Exponentiation",
+        "Ratio of Sides",
+        "Rate of Change"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What does 'VPN' stand for?",
+      "options": [
+        "Virtual Private Network",
+        "Virtual Public Network",
+        "Verified Private Network"
+      ],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is a branch of mathematics concerning the properties of integers?",
+      "options": ["Number Theory", "Set Theory", "Graph Theory"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is the name for a type of computer memory that is non-volatile?",
+      "options": ["RAM", "Cache", "ROM"],
+      "correct": 2
+    },
+    {
+      "question": "What is a radian?",
+      "options": ["Unit of Temperature", "Unit of Angle", "Unit of Pressure"],
+      "correct": 1
+    },
+    {
+      "question": "What does 'CPU' stand for?",
+      "options": [
+        "Central Processing Unit",
+        "Computer Personal Unit",
+        "Central Program Unit"
+      ],
+      "correct": 0
+    },
+    {
+      "question": "What is a vector?",
+      "options": ["Magnitude Only", "Direction Only", "Magnitude & Direction"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is a popular open-source relational database management system?",
+      "options": ["MongoDB", "PostgreSQL", "Redis"],
+      "correct": 1
+    },
+    {
+      "question": "What is the study of algorithms and their properties?",
+      "options": [
+        "Computer Architecture",
+        "Computer Science",
+        "Software Engineering"
+      ],
+      "correct": 1
+    },
+    {
+      "question": "What is a common data structure for key-value pairs?",
+      "options": ["Array", "Hash Map", "Linked List"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is the process of converting code into a lower-level language?",
+      "options": ["Interpretation", "Compilation", "Execution"],
+      "correct": 1
+    },
+    {
+      "question":
+          "What is a common type of software license that allows free use and modification?",
+      "options": ["Proprietary", "Open Source", "Shareware"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common way to represent colors in web design?",
+      "options": ["RGB", "Hex Code", "Both"],
+      "correct": 2
+    },
+    {
+      "question": "What is a common method for securing websites?",
+      "options": ["HTTP", "SSL/TLS", "FTP"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common way to style web pages?",
+      "options": ["HTML", "CSS", "JavaScript"],
+      "correct": 1
+    },
+    {
+      "question": "What is a common way to add interactivity to web pages?",
+      "options": ["HTML", "CSS", "JavaScript"],
+      "correct": 2
+    },
+    {
+      "question": "What is a common way to store data in a web browser?",
+      "options": ["Cookies", "Cache", "Both"],
+      "correct": 2
+    },
+    {
+      "question": "What is a common way to make web pages responsive?",
+      "options": ["Media Queries", "JavaScript", "Flexbox"],
+      "correct": 0
+    },
+    {
+      "question":
+          "What is a common way to build mobile apps for both iOS and Android?",
+      "options": ["Swift", "Kotlin", "React Native"],
+      "correct": 2
+    },
+    {
+      "question":
+          "What is a common way to manage project dependencies in JavaScript?",
+      "options": ["npm", "pip", "Maven"],
+      "correct": 0
+    },
+    {
+      "question": "What is a common way to test software?",
+      "options": ["Unit Testing", "Integration Testing", "Both"],
+      "correct": 2
+    }
+  ]
+}
