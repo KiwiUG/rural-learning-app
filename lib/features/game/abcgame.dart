@@ -101,10 +101,14 @@ class _ABCGameState extends State<ABCGame> {
 
   void _startGame() {
     if (!allQuestions.containsKey(selectedTheme)) return;
+    // Copy and shuffle only the selected theme's questions
+    final shuffledQuestions = List<Question>.from(allQuestions[selectedTheme]!);
+    shuffledQuestions.shuffle();
+
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (_) => GameScreen(questions: allQuestions[selectedTheme]!),
+        builder: (_) => GameScreen(questions: shuffledQuestions),
       ),
     ).then((_) => _reloadHighScore());
   }
@@ -130,7 +134,6 @@ class _ABCGameState extends State<ABCGame> {
     final List<String> rankEmojis = ['🥇', '🥈', '🥉', '🏅', '🎖️'];
 
     return Scaffold(
-
       backgroundColor: Colors.transparent,
       appBar: AppBar(title: Text("STEM Quiz")),
       body: Container(
@@ -401,6 +404,11 @@ class _GameScreenState extends State<GameScreen>
     );
   }
 
+  void _quitGame() {
+    timer?.cancel();
+    Navigator.of(context).pop();
+  }
+
   @override
   void dispose() {
     timer?.cancel();
@@ -454,6 +462,20 @@ class _GameScreenState extends State<GameScreen>
     return Scaffold(
       appBar: AppBar(
         title: Text('Question ${index + 1}/${widget.questions.length}'),
+        actions: [
+          TextButton.icon(
+            onPressed: _quitGame,
+            icon: Icon(Icons.exit_to_app, color: Colors.white),
+            label: Text(
+              "Quit",
+              style: TextStyle(
+                color: Colors.white,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            style: TextButton.styleFrom(foregroundColor: Colors.white),
+          ),
+        ],
       ),
       body: Stack(
         children: [
@@ -486,6 +508,20 @@ class _GameScreenState extends State<GameScreen>
                       Text(
                         'Streak: $streak',
                         style: TextStyle(color: Colors.black87),
+                      ),
+                      TextButton.icon(
+                        onPressed: _quitGame,
+                        icon: Icon(Icons.exit_to_app, color: Color(0xFF2C3E50)),
+                        label: Text(
+                          "Quit",
+                          style: TextStyle(
+                            color: Color(0xFF2C3E50),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        style: TextButton.styleFrom(
+                          foregroundColor: Color(0xFF2C3E50),
+                        ),
                       ),
                     ],
                   ),
