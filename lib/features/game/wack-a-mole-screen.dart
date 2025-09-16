@@ -1,8 +1,6 @@
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
-import 'package:rural_learning_app/data/profile_service.dart';
 import 'package:rural_learning_app/features/game/wack-a-mole-game.dart';
-
 
 class WhackAMoleScreen extends StatefulWidget {
   const WhackAMoleScreen({super.key});
@@ -17,22 +15,15 @@ class _WhackAMoleScreenState extends State<WhackAMoleScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.transparent,
-      // **FIX 1: Add an AppBar for the back button**
+      backgroundColor: const Color(0xFF152C3E), // Use game's background color
       appBar: AppBar(
-        // Make the AppBar transparent to see the game behind it
         backgroundColor: Colors.transparent,
         elevation: 0,
-        // Add the back button icon
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.white),
-          // The action to perform when the button is pressed
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
-      // **FIX 2: Allow the game to draw behind the transparent AppBar**
       extendBodyBehindAppBar: true,
       body: GameWidget.controlled(
         gameFactory: () => _game,
@@ -48,7 +39,6 @@ class _WhackAMoleScreenState extends State<WhackAMoleScreen> {
                 ),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       "Game Over!",
@@ -64,9 +54,7 @@ class _WhackAMoleScreenState extends State<WhackAMoleScreen> {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 30, vertical: 15),
                       ),
-                      onPressed: () {
-                        game.restart();
-                      },
+                      onPressed: () => game.restart(),
                       child: const Text("Play Again"),
                     ),
                   ],

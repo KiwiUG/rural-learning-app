@@ -1,5 +1,3 @@
-// mole.dart
-
 import 'package:flame/components.dart';
 import 'package:flame/effects.dart';
 import 'package:flame/events.dart';
@@ -29,7 +27,6 @@ class Mole extends PositionComponent with TapCallbacks {
 
   @override
   Future<void> onLoad() async {
-    // No need to call super.onLoad() when it's empty.
     _molePaint.color = const Color.fromARGB(255, 10, 94, 113);
 
     _moleCircle = CircleComponent(
@@ -39,8 +36,10 @@ class Mole extends PositionComponent with TapCallbacks {
       position: size / 2,
     );
 
-    double fontSize = size.x * 0.25;
-    if (text.length > 8) fontSize *= 0.8;
+    // Dynamically adjust font size based on text length and mole size
+    double baseFontSize = size.x * 0.25;
+    if (text.length > 6) baseFontSize *= 0.7;
+    if (text.length > 10) baseFontSize *= 0.8;
 
     _textComponent = TextComponent(
       text: text,
@@ -50,12 +49,12 @@ class Mole extends PositionComponent with TapCallbacks {
         style: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold,
-          fontSize: fontSize,
+          fontSize: baseFontSize,
         ),
       ),
     );
-    
-    // **FIX:** Move popUp logic here
+
+    // Pop-up animation logic
     state = MoleState.visible;
     scale = Vector2.zero(); // Start scaled down
     addAll([_moleCircle, _textComponent]);
@@ -65,14 +64,12 @@ class Mole extends PositionComponent with TapCallbacks {
     ));
   }
 
-  // **FIX:** This method is no longer needed and can be removed.
-  // void popUp() { ... }
-
   void reveal(bool isCorrect, bool wasTapped) {
     if (wasTapped) {
       _molePaint.color = isCorrect ? Colors.greenAccent : Colors.redAccent;
     } else if (isCorrect) {
       _molePaint.color = Colors.greenAccent;
+      // Add a slight "pulse" effect to highlight the correct answer
       add(ScaleEffect.to(
         Vector2.all(1.1),
         EffectController(duration: 0.15, alternate: true, repeatCount: 2),
