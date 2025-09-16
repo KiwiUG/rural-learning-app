@@ -18,6 +18,9 @@ class WhackAMoleGame extends FlameGame {
   String currentLevel = "easy";
   late Timer gameTimer;
   bool isInputLocked = false;
+  
+  // Safe area for UI, to avoid status bar and AppBar
+  final double topMargin = 50.0; 
 
   // Questions & Moles
   Map<String, List<dynamic>> questionBank = {};
@@ -27,40 +30,42 @@ class WhackAMoleGame extends FlameGame {
   List<Vector2> holePositions = [];
 
   @override
-  Color backgroundColor() => const Color(0xFF152C3E); // Dark blue background
+  Color backgroundColor() => const Color(0xFF152C3E);
 
   @override
   Future<void> onLoad() async {
     await super.onLoad();
     await loadQuestions();
     _createUI();
-    _updateLayout(); // Initial layout setup
+    
+    // Initialize currentQuestion with a default empty value
+    currentQuestion = {'question': ''}; 
+    
+    _updateLayout(); // Sets initial positions based on screen size
 
     gameTimer = Timer(3.0, onTick: handleMiss, repeat: true)..stop();
-    nextQuestion();
+    nextQuestion(); 
   }
+
 
   @override
   void onGameResize(Vector2 newSize) {
     super.onGameResize(newSize);
-    if (!isLoaded) return;
-    if (size.x == 0 || size.y == 0) return;
+    if (!isLoaded || size.x == 0 || size.y == 0) return;
 
+    // This properly handles auto-rotate.
+    // It rebuilds the UI layout and respawns the moles in their new correct positions.
     _updateLayout();
-    // Respawn moles in new positions to adapt to the new screen size
     spawnMoles();
   }
 
-  // Recalculates all UI element positions and sizes.
   void _updateLayout() {
     _updateUIPositions();
     _calculateHolePositions();
   }
 
   Future<void> loadQuestions() async {
-    final String jsonString = await rootBundle.loadString(
-      'assets/questions.json',
-    );
+    final String jsonString = await rootBundle.loadString('assets/questions.json');
     final Map<String, dynamic> jsonMap = json.decode(jsonString);
     questionBank = {
       "easy": jsonMap["easy"] as List<dynamic>,
@@ -69,20 +74,30 @@ class WhackAMoleGame extends FlameGame {
     };
   }
 
-  // Calculates where moles can appear, restricting them to the bottom 70% of the screen.
+  // ✅ UPDATED: Positions moles to fill the remaining screen space with even borders.
   void _calculateHolePositions() {
     holePositions.clear();
 
-    // Define the game area (bottom 70% of the screen)
-    final double gameAreaStartY = size.y * 0.30;
-    final double gameAreaHeight = size.y * 0.70;
+    // Game area starts after the 35% UI area, as before.
+    final double gameAreaStartY = topMargin + (size.y * 0.35);
+    final double gameAreaHeight = size.y - gameAreaStartY;
 
-    // Grid takes up 85% of the available game area space
-    final double gridSize = min(size.x, gameAreaHeight) * 0.85;
+    // Define explicit margins to control spacing.
+    final double gridMarginTop = 10.0;    // A small gap after the question.
+    final double gridMarginBottom = 20.0; // A small border at the bottom.
+
+    // Calculate the actual height available for the grid.
+    final double availableHeight = gameAreaHeight - gridMarginTop - gridMarginBottom;
+    
+    // The grid will be a square sized to fit the available space.
+    final double gridSize = min(size.x * 0.85, availableHeight); 
+    
+    // Center the grid horizontally.
     final double gridStartX = (size.x - gridSize) / 2;
-    // Center the grid vertically within the game area
-    final double gridStartY = gameAreaStartY + (gameAreaHeight - gridSize) / 2;
 
+    // Position the grid to start right after the top margin.
+    final double gridStartY = gameAreaStartY + gridMarginTop;
+    
     final double gap = gridSize / 3;
 
     for (int row = 0; row < 3; row++) {
@@ -107,7 +122,6 @@ class WhackAMoleGame extends FlameGame {
     questionText.text = currentQuestion['question'];
     gameTimer.limit = {"easy": 6.0, "medium": 5.0, "hard": 4.0}[currentLevel]!;
     gameTimer.start();
-
     spawnMoles();
   }
 
@@ -117,17 +131,15 @@ class WhackAMoleGame extends FlameGame {
 
     final options = List<String>.from(currentQuestion['options']);
     final shuffledPositions = List.from(holePositions)..shuffle();
-    // Base mole size on the gap between holes for consistency
-    final double gap = min(size.x, size.y * 0.70) * 0.85 / 3;
+    final double gap = min(size.x, size.y * 0.60) * 0.90 / 3;
     final double moleSize = gap * 0.8;
 
     for (int i = 0; i < options.length; i++) {
-      final int moleIndex = i;
       final mole = Mole(
         text: options[i],
         position: shuffledPositions[i],
         diameter: moleSize,
-        onTap: () => handleTap(moleIndex),
+        onTap: () => handleTap(i),
       );
       activeMoles.add(mole);
       add(mole);
@@ -138,7 +150,6 @@ class WhackAMoleGame extends FlameGame {
     if (isInputLocked) return;
     isInputLocked = true;
     gameTimer.stop();
-
     bool isCorrect = tappedIndex == currentQuestion['correct'];
 
     for (int i = 0; i < activeMoles.length; i++) {
@@ -152,12 +163,8 @@ class WhackAMoleGame extends FlameGame {
       lives--;
     }
     _updateScoreboard();
-
     Future.delayed(const Duration(milliseconds: 1200), () {
-      if (lives <= 0)
-        gameOver();
-      else
-        nextQuestion();
+      if (lives <= 0) gameOver(); else nextQuestion();
     });
   }
 
@@ -167,16 +174,11 @@ class WhackAMoleGame extends FlameGame {
     gameTimer.stop();
     lives--;
     _updateScoreboard();
-
     for (int i = 0; i < activeMoles.length; i++) {
       activeMoles[i].reveal(i == currentQuestion['correct'], false);
     }
-
     Future.delayed(const Duration(milliseconds: 1200), () {
-      if (lives <= 0)
-        gameOver();
-      else
-        nextQuestion();
+      if (lives <= 0) gameOver(); else nextQuestion();
     });
   }
 
@@ -184,21 +186,15 @@ class WhackAMoleGame extends FlameGame {
     if (score >= 10) {
       currentLevel = "hard";
       levelText.text = "Level: Hard";
-      levelText.textRenderer = TextPaint(
-        style: const TextStyle(color: Colors.red, fontSize: 20),
-      );
+      levelText.textRenderer = TextPaint(style: const TextStyle(color: Colors.red, fontSize: 20));
     } else if (score >= 5) {
       currentLevel = "medium";
       levelText.text = "Level: Medium";
-      levelText.textRenderer = TextPaint(
-        style: const TextStyle(color: Colors.orange, fontSize: 20),
-      );
+      levelText.textRenderer = TextPaint(style: const TextStyle(color: Colors.orange, fontSize: 20));
     } else {
       currentLevel = "easy";
       levelText.text = "Level: Easy";
-      levelText.textRenderer = TextPaint(
-        style: const TextStyle(color: Colors.green, fontSize: 20),
-      );
+      levelText.textRenderer = TextPaint(style: const TextStyle(color: Colors.green, fontSize: 20));
     }
   }
 
@@ -207,19 +203,15 @@ class WhackAMoleGame extends FlameGame {
     super.update(dt);
     gameTimer.update(dt);
     if (gameTimer.isRunning()) {
-      timerText.text =
-          "Time: ${(gameTimer.limit - gameTimer.current).toStringAsFixed(1)}";
+      timerText.text = "Time: ${(gameTimer.limit - gameTimer.current).toStringAsFixed(1)}";
     }
   }
 
   void gameOver() {
-  ProfileService.updateProgress(xpGained: xp);
-
-    // Clean up the screen before showing the overlay
+    ProfileService.updateProgress(xpGained: xp);
     removeAll(activeMoles);
     activeMoles.clear();
     questionText.text = '';
-
     overlays.add('GameOver');
     pauseEngine();
   }
@@ -231,11 +223,28 @@ class WhackAMoleGame extends FlameGame {
     currentLevel = "easy";
     _updateScoreboard();
     updateLevel();
-
     overlays.remove('GameOver');
     resumeEngine();
     nextQuestion();
   }
+  
+// ... inside the WhackAMoleGame class
+
+  void _createUI() {
+    const uiPriority = 10;
+    questionText = TextBoxComponent(text: ''); 
+    
+    // ✅ Bolding added to all info text
+    scoreText = _makeText("Score: $score", Colors.yellow, 24, bold: true, anchor: Anchor.centerLeft)..priority = uiPriority;
+    levelText = _makeText("Level: Easy", Colors.green, 24, bold: true, anchor: Anchor.center)..priority = uiPriority;
+    timerText = _makeText("Time: 0.0", Colors.yellow, 24, bold: true, anchor: Anchor.centerRight)..priority = uiPriority;
+    livesText = _makeText("Lives: $lives", Colors.red, 26, bold: true, anchor: Anchor.center)..priority = uiPriority;
+    xpText = _makeText("XP: $xp", Colors.lightBlueAccent, 26, bold: true, anchor: Anchor.center)..priority = uiPriority;
+    
+    addAll([scoreText, levelText, timerText, livesText, xpText]);
+  }
+
+// ... rest of your code is the same
 
   void _updateScoreboard() {
     scoreText.text = "Score: $score";
@@ -243,104 +252,45 @@ class WhackAMoleGame extends FlameGame {
     xpText.text = "XP: $xp";
   }
 
-  void _createUI() {
-    const uiPriority = 10;
+  void _updateUIPositions() {
+    if (questionText.isMounted) {
+      remove(questionText);
+    }
+    
+    // Define the total, more compact UI area (35% of screen height)
+    final double totalUiAreaHeight = size.y * 0.35;
 
-    // Question text
+    // Position info rows in the top half of this area
+    double topRowY = topMargin + totalUiAreaHeight * 0.25;
+    scoreText.position = Vector2(size.x * 0.05, topRowY);
+    levelText.position = Vector2(size.x * 0.5, topRowY);
+    timerText.position = Vector2(size.x * 0.95, topRowY);
+
+    double secondRowY = topMargin + totalUiAreaHeight * 0.5;
+    livesText.position = Vector2(size.x * 0.25, secondRowY);
+    xpText.position = Vector2(size.x * 0.75, secondRowY);
+    
+    // Position question in the bottom half of this area
+    final double questionAreaStartY = topMargin + totalUiAreaHeight * 0.6;
+    final double questionAreaHeight = totalUiAreaHeight * 0.4;
+    
     questionText = TextBoxComponent(
-      text: '',
-      boxConfig: TextBoxConfig(
-        maxWidth: size.x * 0.9, // fill horizontal space, wrap only if needed
-        timePerChar: 0, // instant display
-      ),
-      textRenderer: TextPaint(
-        style: const TextStyle(
-          color: Colors.white,
-          fontSize: 24,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
+      text: currentQuestion['question'],
+      textRenderer: TextPaint(style: const TextStyle(color: Colors.white, fontSize: 24, fontWeight: FontWeight.bold)),
+      boxConfig: TextBoxConfig(maxWidth: size.x * 0.9),
       anchor: Anchor.center,
       align: Anchor.center,
-      priority: uiPriority,
+      priority: 10,
     );
 
-    // Top row info
-    scoreText = _makeText(
-      "Score: $score",
-      Colors.yellow,
-      20,
-      bold: true,
-      anchor: Anchor.centerLeft,
-    )..priority = uiPriority;
-    levelText = _makeText(
-      "Level: Easy",
-      Colors.green,
-      20,
-      anchor: Anchor.center,
-    )..priority = uiPriority;
-    timerText = _makeText(
-      "Time: 0.0",
-      Colors.white,
-      20,
-      anchor: Anchor.centerRight,
-    )..priority = uiPriority;
-
-    // Second row info
-    livesText = _makeText(
-      "Lives: $lives",
-      Colors.red,
-      20,
-      bold: true,
-      anchor: Anchor.center,
-    )..priority = uiPriority;
-    xpText = _makeText(
-      "XP: $xp",
-      Colors.lightBlueAccent,
-      20,
-      bold: true,
-      anchor: Anchor.center,
-    )..priority = uiPriority;
-
-    addAll([questionText, scoreText, levelText, timerText, livesText, xpText]);
+    questionText.position = Vector2(
+      size.x * 0.5,
+      questionAreaStartY + (questionAreaHeight / 2)
+    );
+    add(questionText);
   }
 
-void _updateUIPositions() {
-  final double topUIHeight = size.y * 0.3;
-
-  // Top row
-  final double topRowY = topUIHeight * 0.2;
-  scoreText.position = Vector2(size.x * 0.05, topRowY);
-  levelText.position = Vector2(size.x * 0.5, topRowY);
-  timerText.position = Vector2(size.x * 0.95, topRowY);
-
-  // Second row
-  final double secondRowY = topRowY + topUIHeight * 0.15;
-  livesText.position = Vector2(size.x * 0.35, secondRowY);
-  xpText.position = Vector2(size.x * 0.65, secondRowY);
-
-  // Question box
-  final double questionBoxHeight = topUIHeight * 0.3;
-  questionText
-    ..size = Vector2(size.x * 0.9, questionBoxHeight)
-    ..position = Vector2(size.x * 0.5, secondRowY + questionBoxHeight / 2);
-
-  // Force re-render by updating text (triggers re-centering)
-  final current = questionText.text;
-  questionText.text = '';
-  questionText.text = current;
-}
-
-
-
-  // Helper for creating TextComponents
-  TextComponent _makeText(
-    String text,
-    Color color,
-    double fontSize, {
-    bool bold = false,
-    Anchor anchor = Anchor.center,
-  }) {
+  TextComponent _makeText(String text, Color color, double fontSize, {bool bold = false, Anchor anchor = Anchor.center}) {
     return TextComponent(
       text: text,
       anchor: anchor,
