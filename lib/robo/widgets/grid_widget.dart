@@ -1,7 +1,7 @@
-r// widgets/grid_widget.dart
+// widgets/grid_widget.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import '../models/robot.dart';
+import '../screens/models/robot.dart';
 
 class GridWidget extends StatelessWidget {
   final Robot robot;
@@ -59,7 +59,7 @@ class GridWidget extends StatelessWidget {
                       child: Transform.rotate(
                         angle: robot.getRotation(),
                         child: SvgPicture.asset(
-                          'lib/assets/robot.svg',
+                          'assets/robot.svg',
                           width: 60,
                           height: 60,
                         ),

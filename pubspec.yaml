@@ -39,6 +39,7 @@ dependencies:
   flutter_animate: ^4.1.0
   flame: ^1.17.0
   vector_math: ^2.1.4
+  flutter_svg: ^1.1.6
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -68,6 +69,7 @@ flutter:
     - assets/data/questions.json
     - assets/questions.json
     - assets/images/background.png
+    - assets/robot.svg
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
