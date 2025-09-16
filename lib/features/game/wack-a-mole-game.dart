@@ -213,7 +213,7 @@ class WhackAMoleGame extends FlameGame {
   }
 
   void gameOver() {
-    ProfileService.addXP(xp);
+  ProfileService.updateProgress(xpGained: xp);
 
     // Clean up the screen before showing the overlay
     removeAll(activeMoles);

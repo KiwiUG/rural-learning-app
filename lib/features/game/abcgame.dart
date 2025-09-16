@@ -389,7 +389,7 @@ class _GameScreenState extends State<GameScreen>
     final high = prefs.getInt('highscore') ?? 0;
     if (score > high) await prefs.setInt('highscore', score);
 
-    ProfileService.addXP(xp);
+    ProfileService.updateProgress(xpGained: xp);
     // Save last 5 scores
     List<String> lastScores = prefs.getStringList('lastScores') ?? [];
     lastScores.insert(0, score.toString());
