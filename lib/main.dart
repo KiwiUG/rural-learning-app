@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:rural_learning_app/features/game/wack-a-mole-screen.dart';
 import 'features/game/spelling_game.dart';
+import 'features/game/abcgame.dart';
 
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -79,23 +81,43 @@ class _DashboardScreenState extends State<DashboardScreen> {
             ),
             ListTile(
               leading: const Icon(Icons.book),
-              title: const Text('Lessons'),
+              title: const Text('Wack a Mole'),
               onTap: () {
-                Navigator.pop(context);
-                // TODO: Navigate to Lessons
-              },
+    Navigator.pop(context); // close drawer
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>  WhackAMoleScreen(),
+      ),
+    ).then((_) {
+      // ✅ refresh when returning from game
+      setState(() {
+        loadProfile();
+      });
+    });
+  },
             ),
             ListTile(
               leading: const Icon(Icons.quiz),
-              title: const Text('Quiz'),
+              title: const Text('STEM Quiz'),
               onTap: () {
-                Navigator.pop(context);
-                // TODO: Navigate to Quiz
-              },
+    Navigator.pop(context); // close drawer
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>  ABCGame(),
+      ),
+    ).then((_) {
+      // ✅ refresh when returning from game
+      setState(() {
+        loadProfile();
+      });
+    });
+  },
             ),
             ListTile(
   leading: const Icon(Icons.videogame_asset),
-  title: const Text('Play Game'),
+  title: const Text('Spelling Game'),
   onTap: () {
     Navigator.pop(context); // close drawer
     Navigator.push(
